@@ -1,0 +1,14 @@
+'''
+Instructions
+- Write the requirement for matplotlib with at least version 3.0.0 or above.
+- Write the requirement for numpy version 1.15.4 exactly.
+- Write the requirement for pandas with at most version 0.22.0.
+- Write a non-version specific requirement for pycodestyle
+'''
+
+requirements = """
+matplotlib>=3.0.0
+numpy==1.15.4
+pandas<=0.22.0
+pycodestyle
+"""

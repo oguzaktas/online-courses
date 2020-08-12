@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=DepthFilter
+comment0.text=\r\n\ Write\ a\ description\ of\ DepthFilter\ here.\r\n\ \r\n\ @\ Oguz\ Aktas\r\n\ @\ Version\ 1.0\r\n
+comment1.params=min\ max\ filterName
+comment1.target=DepthFilter(double,\ double,\ java.lang.String)
+comment2.params=
+comment2.target=double\ getDepthMin()
+comment3.params=
+comment3.target=double\ getDepthMax()
+comment4.params=
+comment4.target=java.lang.String\ getName()
+comment5.params=min
+comment5.target=void\ setDepthMin(double)
+comment6.params=max
+comment6.target=void\ setDepthMax(double)
+comment7.params=qe
+comment7.target=boolean\ satisfies(QuakeEntry)
+numComments=8

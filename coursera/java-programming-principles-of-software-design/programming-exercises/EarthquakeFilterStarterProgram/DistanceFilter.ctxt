@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=DistanceFilter
+comment0.text=\r\n\ Write\ a\ description\ of\ DistanceFilter\ here.\r\n\ \r\n\ @\ Oguz\ Aktas\r\n\ @\ Version\ 1.0\r\n
+comment1.params=loc\ dist\ filterName
+comment1.target=DistanceFilter(Location,\ float,\ java.lang.String)
+comment2.params=
+comment2.target=Location\ getLocation()
+comment3.params=
+comment3.target=float\ getMaxDistance()
+comment4.params=
+comment4.target=java.lang.String\ getName()
+comment5.params=loc
+comment5.target=void\ setLocation(Location)
+comment6.params=dist
+comment6.target=void\ setMaxDistance(float)
+comment7.params=qe
+comment7.target=boolean\ satisfies(QuakeEntry)
+numComments=8

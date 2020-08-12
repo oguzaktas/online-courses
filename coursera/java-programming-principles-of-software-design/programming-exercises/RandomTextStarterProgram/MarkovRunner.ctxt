@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=MarkovRunner
+comment1.params=
+comment1.target=void\ runMarkovZero()
+comment2.params=
+comment2.target=void\ runMarkovOne()
+comment3.params=
+comment3.target=void\ runMarkovFour()
+comment4.params=
+comment4.target=void\ runMarkovModel()
+comment5.params=s
+comment5.target=void\ printOut(java.lang.String)
+comment5.text=\r\n\ \ \ \ public\ void\ runModel(IMarkovModel\ markov,\ String\ text,\ int\ size)\ {\r\n\ \ \ \ \ \ \ \ markov.setTraining(text);\r\n\ \ \ \ \ \ \ \ System.out.println("running\ with\ "\ +\ markov);\r\n\ \ \ \ \ \ \ \ for(int\ k\=0;\ k\ <\ 3;\ k++){\r\n\ \ \ \ \ \ \ \ \ \ \ \ String\ st\ \=\ markov.getRandomText(size);\r\n\ \ \ \ \ \ \ \ \ \ \ \ printOut(st);\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ }\r\n
+numComments=6

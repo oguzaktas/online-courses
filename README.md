@@ -1,6 +1,6 @@
 # Online Courses
 
-This repository contains my solutions and programming assignments to the online courses from educational resources that I have completed.
+This repository contains my solutions and programming assignments to online courses that I have completed.
 
 ## Completed Courses
 
@@ -45,7 +45,11 @@ This repository contains my solutions and programming assignments to the online 
 - Introduction to TensorFlow in Python - July 2020
 - Regular Expressions in Python - September 2020
 - Introduction to Git - September 2020
-- Introduction to Scala - September 2020
+- [Introduction to Scala](https://www.datacamp.com/courses/introduction-to-scala) - October 2020
+- Introduction to PySpark
+- Introduction to Predictive Analytics in Python
+- Preprocessing for Machine Learning in Python
+.....
 
 ### LinkedIn Learning
 

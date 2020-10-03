@@ -60,3 +60,8 @@ This repository contains my solutions and programming assignments to online cour
 - [Entrepreneurship Foundations](https://www.linkedin.com/learning/entrepreneurship-foundations-2) - October 2019
 - [SOLID Programming Principles](https://www.linkedin.com/learning/learning-s-o-l-i-d-programming-principles) - November 2019
 - [Developer Career Paths and Certifications](https://www.linkedin.com/learning/developer-career-paths-and-certifications) - November 2019
+
+### NVIDIA Deep Learning Institute
+
+- [Fundamentals of Deep Learning for Computer Vision](https://courses.nvidia.com/courses/course-v1:DLI+C-FX-01+V2/about) - December 2019
+- [Fundamentals of Accelerated Computing with CUDA Python](https://courses.nvidia.com/courses/course-v1:DLI+C-AC-02+V1/about) - April 2020

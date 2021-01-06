@@ -80,6 +80,7 @@ This repository contains my solutions and programming assignments to online cour
 - [Practicing Coding Interview Questions in Python](https://www.datacamp.com/courses/practicing-coding-interview-questions-in-python) - December 2020
 - .....
 - [Introduction to PySpark](https://www.datacamp.com/courses/introduction-to-pyspark)
+- [Building Recommendation Engines in Python](https://www.datacamp.com/courses/building-recommendation-engines-in-python)
 - [Introduction to Predictive Analytics in Python](https://www.datacamp.com/courses/introduction-to-predictive-analytics-in-python)
 - [Preprocessing for Machine Learning in Python](https://www.datacamp.com/courses/preprocessing-for-machine-learning-in-python)
 - [Introduction to Tableau](https://www.datacamp.com/courses/introduction-to-tableau)

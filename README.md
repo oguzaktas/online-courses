@@ -23,6 +23,7 @@ This repository contains my solutions and programming assignments to online cour
 - [Front-End Web Development with React](https://www.coursera.org/learn/front-end-react)
 - [Multiplatform Mobile App Development with React Native](https://www.coursera.org/learn/react-native)
 - [Introduction to Game Development](https://www.coursera.org/learn/game-development)
+- [Competitive Programmer's Core Skills](https://www.coursera.org/learn/competitive-programming-core-skills)
 - [Parallel Programming in Java](https://www.coursera.org/learn/parallel-programming-in-java)
 - [Concurrent Programming in Java](https://www.coursera.org/learn/concurrent-programming-in-java)
 - [Distributed Programming in Java](https://www.coursera.org/learn/distributed-programming-in-java)

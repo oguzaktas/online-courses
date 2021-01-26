@@ -40,6 +40,7 @@ This repository contains my solutions and programming assignments to online cour
 - [Mathematical Foundation for Machine Learning and Artificial Intelligence](https://www.udemy.com/course/mathematical-foundation-for-machine-learning-and-ai/) - January 2020
 - [Java Certification: OCA (1Z0-808) Exam Simulation](https://www.udemy.com/course/java-oca/) - August 2020
 - [Java Multithreading](https://www.udemy.com/course/java-multithreading/) - December 2020
+- [Exam 70-480: Programming in HTML5 with JavaScript and CSS3 Practice Tests](https://www.udemy.com/course/70-480-programming-in-html5-with-js-css3-practice-tests-n/) - January 2021
 - .....
 - [The Complete TOEFL iBT Success Course](https://www.udemy.com/course/the-complete-toefl-ibt-success-course/)
 - [Design Patterns in Java](https://www.udemy.com/course/design-patterns-java/)

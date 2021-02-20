@@ -28,6 +28,20 @@ This repository contains my solutions and programming assignments to online cour
 - [Concurrent Programming in Java](https://www.coursera.org/learn/concurrent-programming-in-java)
 - [Distributed Programming in Java](https://www.coursera.org/learn/distributed-programming-in-java)
 - [Innovating in a Digital World](https://www.coursera.org/learn/innovating-digital-world)
+- [Software Design and Architecture Specialization](https://www.coursera.org/specializations/software-design-architecture)
+- [Advanced Data Structures in Java](https://www.coursera.org/learn/advanced-data-structures)
+- [Algorithms, Part II](https://www.coursera.org/learn/algorithms-part2)
+- [Responsive Website Basics: Code with HTML, CSS, and JavaScript](https:/www.coursera.org/learn/website-coding)
+- [Responsive Web Design](https://www.coursera.org/learn/responsive-web-design)
+- [Responsive Website Tutorial and Examples](https://www.coursera.org/learn/responsive-website-examples)
+- [Programming Languages, Part A](https://www.coursera.org/learn/programming-languages)
+- [Programming Languages, Part B](https://www.coursera.org/learn/programming-languages-part-b)
+- [Programming Languages, Part C](https://www.coursera.org/learn/programming-languages-part-c)
+- [Algorithmic Toolbox](https://www.coursera.org/learn/algorithmic-toolbox)
+- [Introduction to C# Programming and Unity](https://www.coursera.org/learn/introduction-programming-unity)
+- [Single Page Web Applications with AngularJS](https://www.coursera.org/learn/single-page-web-apps-with-angularjs)
+- [Software Development Processes and Methodologies](https://www.coursera.org/learn/software-processes)
+- [Agile Software Development](https://www.coursera.org/learn/agile-software-development)
 - .......
 
 ### edX
@@ -41,14 +55,19 @@ This repository contains my solutions and programming assignments to online cour
 - [Java Certification: OCA (1Z0-808) Exam Simulation](https://www.udemy.com/course/java-oca/) - August 2020
 - [Java Multithreading](https://www.udemy.com/course/java-multithreading/) - December 2020
 - [Exam 70-480: Programming in HTML5 with JavaScript and CSS3 Practice Tests](https://www.udemy.com/course/70-480-programming-in-html5-with-js-css3-practice-tests-n/) - January 2021
-- .....
-- [The Complete TOEFL iBT Success Course](https://www.udemy.com/course/the-complete-toefl-ibt-success-course/)
-- [Design Patterns in Java](https://www.udemy.com/course/design-patterns-java/)
-- [Java Certification: OCP (1Z0-809) Exam Simulation](https://www.udemy.com/course/java-ocp/)
 - [Clean Code](https://www.udemy.com/course/writing-clean-code/)
+- .....
+- [Java Certification: OCP (1Z0-809) Exam Simulation](https://www.udemy.com/course/java-ocp/)
+- [Beat the Codility Coding Interview in Java](https://www.udemy.com/course/beat-the-codility-coding-interview-in-java/)
+- [Design Patterns in Java](https://www.udemy.com/course/design-patterns-java/)
+- [The Complete TOEFL iBT Success Course](https://www.udemy.com/course/the-complete-toefl-ibt-success-course/)
+
 - [React Native Projects](https://www.udemy.com/course/react-native-projects/)
 - [Spring Framework and Spring Boot for Java](https://www.udemy.com/course/java-spring-social-network/)
 - [Introduction to React and Node.js](https://www.udemy.com/course/learn-reactjs-nodejs/)
+- [Docker for Java Developers](https://www.udemy.com/course/docker-for-java-developers/)
+- [Spring and Hibernate for Beginners](https://www.udemy.com/course/spring-hibernate-tutorial/)
+- [React Tutorial and Projects](https://www.udemy.com/course/react-tutorial-and-projects-course/)
 - ......
 
 ### DataCamp
@@ -80,11 +99,17 @@ This repository contains my solutions and programming assignments to online cour
 - [Writing Functions in Python](https://www.datacamp.com/courses/writing-functions-in-python) - December 2020
 - [Writing Efficient Python Code](https://www.datacamp.com/courses/writing-efficient-python-code) - December 2020
 - [Practicing Coding Interview Questions in Python](https://www.datacamp.com/courses/practicing-coding-interview-questions-in-python) - December 2020
+- [Developing Python Packages](https://learn.datacamp.com/courses/developing-python-packages) - February 2021
 - .....
 - [Introduction to PySpark](https://www.datacamp.com/courses/introduction-to-pyspark)
 - [Building Recommendation Engines in Python](https://www.datacamp.com/courses/building-recommendation-engines-in-python)
+- [Writing Efficient Code with pandas](https://learn.datacamp.com/courses/writing-efficient-code-with-pandas)
+- [Introduction to Deep Learning with PyTorch](https://learn.datacamp.com/courses/introduction-to-deep-learning-with-pytorch)
 - [Introduction to Predictive Analytics in Python](https://www.datacamp.com/courses/introduction-to-predictive-analytics-in-python)
 - [Preprocessing for Machine Learning in Python](https://www.datacamp.com/courses/preprocessing-for-machine-learning-in-python)
+- [Introduction to Natural Language Processing in Python](https://learn.datacamp.com/courses/introduction-to-natural-language-processing-in-python)
+- [Building Chatbots in Python](https://learn.datacamp.com/courses/building-chatbots-in-python)
+- [Web Scraping in Python](https://learn.datacamp.com/courses/web-scraping-with-python)
 - [Introduction to Tableau](https://www.datacamp.com/courses/introduction-to-tableau)
 - [Introduction to Spreadsheets](https://www.datacamp.com/courses/introduction-to-spreadsheets)
 - [Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r)

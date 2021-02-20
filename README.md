@@ -61,7 +61,6 @@ This repository contains my solutions and programming assignments to online cour
 - [Beat the Codility Coding Interview in Java](https://www.udemy.com/course/beat-the-codility-coding-interview-in-java/)
 - [Design Patterns in Java](https://www.udemy.com/course/design-patterns-java/)
 - [The Complete TOEFL iBT Success Course](https://www.udemy.com/course/the-complete-toefl-ibt-success-course/)
-
 - [React Native Projects](https://www.udemy.com/course/react-native-projects/)
 - [Spring Framework and Spring Boot for Java](https://www.udemy.com/course/java-spring-social-network/)
 - [Introduction to React and Node.js](https://www.udemy.com/course/learn-reactjs-nodejs/)

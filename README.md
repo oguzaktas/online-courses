@@ -55,14 +55,14 @@ This repository contains my solutions and programming assignments to online cour
 - [Java Certification: OCA (1Z0-808) Exam Simulation](https://www.udemy.com/course/java-oca/) - August 2020
 - [Java Multithreading](https://www.udemy.com/course/java-multithreading/) - December 2020
 - [Exam 70-480: Programming in HTML5 with JavaScript and CSS3 Practice Tests](https://www.udemy.com/course/70-480-programming-in-html5-with-js-css3-practice-tests-n/) - January 2021
-- [Clean Code](https://www.udemy.com/course/writing-clean-code/)
 - .....
+- [Clean Code](https://www.udemy.com/course/writing-clean-code/)
+- [Spring Framework and Spring Boot for Java](https://www.udemy.com/course/java-spring-social-network/)
 - [Java Certification: OCP (1Z0-809) Exam Simulation](https://www.udemy.com/course/java-ocp/)
 - [Beat the Codility Coding Interview in Java](https://www.udemy.com/course/beat-the-codility-coding-interview-in-java/)
 - [Design Patterns in Java](https://www.udemy.com/course/design-patterns-java/)
 - [The Complete TOEFL iBT Success Course](https://www.udemy.com/course/the-complete-toefl-ibt-success-course/)
 - [React Native Projects](https://www.udemy.com/course/react-native-projects/)
-- [Spring Framework and Spring Boot for Java](https://www.udemy.com/course/java-spring-social-network/)
 - [Introduction to React and Node.js](https://www.udemy.com/course/learn-reactjs-nodejs/)
 - [Docker for Java Developers](https://www.udemy.com/course/docker-for-java-developers/)
 - [Spring and Hibernate for Beginners](https://www.udemy.com/course/spring-hibernate-tutorial/)
@@ -98,8 +98,8 @@ This repository contains my solutions and programming assignments to online cour
 - [Writing Functions in Python](https://www.datacamp.com/courses/writing-functions-in-python) - December 2020
 - [Writing Efficient Python Code](https://www.datacamp.com/courses/writing-efficient-python-code) - December 2020
 - [Practicing Coding Interview Questions in Python](https://www.datacamp.com/courses/practicing-coding-interview-questions-in-python) - December 2020
-- [Developing Python Packages](https://learn.datacamp.com/courses/developing-python-packages) - February 2021
 - .....
+- [Developing Python Packages](https://learn.datacamp.com/courses/developing-python-packages)
 - [Introduction to PySpark](https://www.datacamp.com/courses/introduction-to-pyspark)
 - [Building Recommendation Engines in Python](https://www.datacamp.com/courses/building-recommendation-engines-in-python)
 - [Writing Efficient Code with pandas](https://learn.datacamp.com/courses/writing-efficient-code-with-pandas)

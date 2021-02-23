@@ -128,6 +128,7 @@ This repository contains my solutions and programming assignments to online cour
 - [SOLID Programming Principles](https://www.linkedin.com/learning/learning-s-o-l-i-d-programming-principles) - November 2019
 - [Developer Career Paths and Certifications](https://www.linkedin.com/learning/developer-career-paths-and-certifications) - November 2019
 - .....
+- [Agile Software Development](https://www.linkedin.com/learning/agile-software-development)
 
 ### NVIDIA Deep Learning Institute
 

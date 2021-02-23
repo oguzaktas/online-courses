@@ -56,8 +56,8 @@ This repository contains my solutions and programming assignments to online cour
 - [Java Multithreading](https://www.udemy.com/course/java-multithreading/) - December 2020
 - [Exam 70-480: Programming in HTML5 with JavaScript and CSS3 Practice Tests](https://www.udemy.com/course/70-480-programming-in-html5-with-js-css3-practice-tests-n/) - January 2021
 - .....
-- [Clean Code](https://www.udemy.com/course/writing-clean-code/)
 - [Spring Framework and Spring Boot for Java](https://www.udemy.com/course/java-spring-social-network/)
+- [Clean Code](https://www.udemy.com/course/writing-clean-code/)
 - [Java Certification: OCP (1Z0-809) Exam Simulation](https://www.udemy.com/course/java-ocp/)
 - [Beat the Codility Coding Interview in Java](https://www.udemy.com/course/beat-the-codility-coding-interview-in-java/)
 - [Design Patterns in Java](https://www.udemy.com/course/design-patterns-java/)
@@ -128,7 +128,6 @@ This repository contains my solutions and programming assignments to online cour
 - [SOLID Programming Principles](https://www.linkedin.com/learning/learning-s-o-l-i-d-programming-principles) - November 2019
 - [Developer Career Paths and Certifications](https://www.linkedin.com/learning/developer-career-paths-and-certifications) - November 2019
 - .....
-- [Agile Software Development](https://www.linkedin.com/learning/agile-software-development)
 
 ### NVIDIA Deep Learning Institute
 

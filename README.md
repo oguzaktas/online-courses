@@ -27,8 +27,11 @@ This repository contains my solutions and programming assignments to online cour
 - [Parallel Programming in Java](https://www.coursera.org/learn/parallel-programming-in-java)
 - [Concurrent Programming in Java](https://www.coursera.org/learn/concurrent-programming-in-java)
 - [Distributed Programming in Java](https://www.coursera.org/learn/distributed-programming-in-java)
-- [Innovating in a Digital World](https://www.coursera.org/learn/innovating-digital-world)
 - [Software Design and Architecture Specialization](https://www.coursera.org/specializations/software-design-architecture)
+- [Software Development Processes and Methodologies](https://www.coursera.org/learn/software-processes)
+- [Agile Software Development](https://www.coursera.org/learn/agile-software-development)
+- [Single Page Web Applications with AngularJS](https://www.coursera.org/learn/single-page-web-apps-with-angularjs)
+- [Innovating in a Digital World](https://www.coursera.org/learn/innovating-digital-world)
 - [Advanced Data Structures in Java](https://www.coursera.org/learn/advanced-data-structures)
 - [Algorithms, Part II](https://www.coursera.org/learn/algorithms-part2)
 - [Responsive Website Basics: Code with HTML, CSS, and JavaScript](https:/www.coursera.org/learn/website-coding)
@@ -39,9 +42,6 @@ This repository contains my solutions and programming assignments to online cour
 - [Programming Languages, Part C](https://www.coursera.org/learn/programming-languages-part-c)
 - [Algorithmic Toolbox](https://www.coursera.org/learn/algorithmic-toolbox)
 - [Introduction to C# Programming and Unity](https://www.coursera.org/learn/introduction-programming-unity)
-- [Single Page Web Applications with AngularJS](https://www.coursera.org/learn/single-page-web-apps-with-angularjs)
-- [Software Development Processes and Methodologies](https://www.coursera.org/learn/software-processes)
-- [Agile Software Development](https://www.coursera.org/learn/agile-software-development)
 - .......
 
 ### edX

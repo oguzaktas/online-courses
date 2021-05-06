@@ -13,7 +13,7 @@ This repository contains my solutions and programming assignments for online cou
 
 - [HTML, CSS, and JavaScript for Web Developers](https://www.coursera.org/learn/html-css-javascript-for-web-developers) - April 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/coursera/html-css-and-javascript-for-web-developers)
 - [Introduction to Artificial Intelligence](https://www.coursera.org/learn/introduction-to-ai) - November 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/coursera/introduction-to-artificial-intelligence)
-- [Getting Started with AI using IBM Watson](https://www.coursera.org/learn/ai-with-ibm-watson) - November 2019
+- [Getting Started with AI Using IBM Watson](https://www.coursera.org/learn/ai-with-ibm-watson) - November 2019
 - [Building AI Powered Chatbots](https://www.coursera.org/learn/building-ai-powered-chatbots) - November 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/coursera/building-ai-powered-chatbots-without-programming)
 - [Building Deep Learning Models with TensorFlow](https://www.coursera.org/learn/building-deep-learning-models-with-tensorflow) - December 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/coursera/building-deep-learning-models-with-tensorflow)
 - [Convolutional Neural Networks in TensorFlow](https://www.coursera.org/learn/convolutional-neural-networks-tensorflow) - December 2019

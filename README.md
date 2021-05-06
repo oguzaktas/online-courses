@@ -107,16 +107,6 @@ This repository contains my solutions and programming assignments for online cou
 - [Java SE 8 Programming: Date/Time API, I/O and File I/O (NIO.2), and Concurrency](https://www2.skillsoft.com/certificates/java-se-8-programming-date-time-api-i-o-and-file-i-o-nio-2-and-concurrency/)
 - [Java SE 8 Programming: Concurrency, Parallelism, the JDBC API, and Localization](https://www2.skillsoft.com/certificates/java-se-8-programming-concurrency-parallelism-the-jdbc-api-and-localization/)
 
-### LinkedIn Learning
-
-- [Advanced Python](https://www.linkedin.com/learning/advanced-python) - June 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/linkedin-learning/advanced-python)
-- [Networking Foundations: Networking Basics](https://www.linkedin.com/learning/networking-foundations-networking-basics) - July 2019
-- [Visual Studio Code for Python Developers](https://www.linkedin.com/learning/visual-studio-code-for-python-developers) - August 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/linkedin-learning/visual-studio-code-for-python-developers)
-- [Blockchain Basics](https://www.linkedin.com/learning/blockchain-basics) - September 2019
-- [Entrepreneurship Foundations](https://www.linkedin.com/learning/entrepreneurship-foundations-2) - October 2019
-- [SOLID Programming Principles](https://www.linkedin.com/learning/learning-s-o-l-i-d-programming-principles) - November 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/linkedin-learning/solid-programming-principles)
-- [Developer Career Paths and Certifications](https://www.linkedin.com/learning/developer-career-paths-and-certifications) - November 2019
-
 ### DataCamp
 
 - [Introduction to Python](https://www.datacamp.com/courses/introduction-to-python) - September 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/introduction-to-python)
@@ -151,6 +141,16 @@ This repository contains my solutions and programming assignments for online cou
 
 - [Fundamentals of Deep Learning for Computer Vision](https://courses.nvidia.com/courses/course-v1:DLI+C-FX-01+V2/about) - December 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/nvidia-deep-learning-institute/fundamentals-of-deep-learning-for-computer-vision)
 - [Fundamentals of Accelerated Computing with CUDA Python](https://courses.nvidia.com/courses/course-v1:DLI+C-AC-02+V1/about) - April 2020 - [Files](https://github.com/oguzaktas/online-courses/tree/master/nvidia-deep-learning-institute/fundamentals-of-accelerated-computing-with-cuda-python)
+
+### LinkedIn Learning
+
+- [Advanced Python](https://www.linkedin.com/learning/advanced-python) - June 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/linkedin-learning/advanced-python)
+- [Networking Foundations: Networking Basics](https://www.linkedin.com/learning/networking-foundations-networking-basics) - July 2019
+- [Visual Studio Code for Python Developers](https://www.linkedin.com/learning/visual-studio-code-for-python-developers) - August 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/linkedin-learning/visual-studio-code-for-python-developers)
+- [Blockchain Basics](https://www.linkedin.com/learning/blockchain-basics) - September 2019
+- [Entrepreneurship Foundations](https://www.linkedin.com/learning/entrepreneurship-foundations-2) - October 2019
+- [SOLID Programming Principles](https://www.linkedin.com/learning/learning-s-o-l-i-d-programming-principles) - November 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/linkedin-learning/solid-programming-principles)
+- [Developer Career Paths and Certifications](https://www.linkedin.com/learning/developer-career-paths-and-certifications) - November 2019
 
 ### Linux Academy
 

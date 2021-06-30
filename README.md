@@ -105,7 +105,7 @@ This repository contains my solutions and programming assignments for online cou
 - [Java SE 8 Programming: Interfaces, Lambda Expressions, Collections, and Generics](https://www2.skillsoft.com/certificates/java-se-8-programming-interfaces-lambda-expressions-collections-and-generics/) - May 2021
 - [Java SE 8 Programming: Inheritance, Interfaces, Exceptions, and Deployment](https://www2.skillsoft.com/certificates/java-se-8-programming-inheritance-interfaces-exceptions-and-deployment/) - May 2021
 - [Java SE 8 Programming: Date/Time API, I/O and File I/O (NIO.2), and Concurrency](https://www2.skillsoft.com/certificates/java-se-8-programming-date-time-api-i-o-and-file-i-o-nio-2-and-concurrency/) - June 2021
-- [Java SE 8 Programming: Concurrency, Parallelism, the JDBC API, and Localization](https://www2.skillsoft.com/certificates/java-se-8-programming-concurrency-parallelism-the-jdbc-api-and-localization/) - June 2021
+- [Java SE 8 Programming: Concurrency, Parallelism, the JDBC API, and Localization](https://www2.skillsoft.com/certificates/java-se-8-programming-concurrency-parallelism-the-jdbc-api-and-localization/) - July 2021
 
 ### DataCamp
 

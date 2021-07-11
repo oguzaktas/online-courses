@@ -22,8 +22,8 @@ This repository contains my solutions and programming assignments for online cou
 - [Machine Learning](https://www.coursera.org/learn/machine-learning) - May 2020 - [Files](https://github.com/oguzaktas/online-courses/tree/master/coursera/machine-learning)
 - [Java Programming: Principles of Software Design](https://www.coursera.org/learn/java-programming-design-principles) - August 2020 - [Files](https://github.com/oguzaktas/online-courses/tree/master/coursera/java-programming-principles-of-software-design)
 - [Kotlin for Java Developers](https://www.coursera.org/learn/kotlin-for-java-developers) - December 2020 - [Files](https://github.com/oguzaktas/online-courses/tree/master/coursera/kotlin-for-java-developers)
-- .....
 - [Single Page Web Applications with AngularJS](https://www.coursera.org/learn/single-page-web-apps-with-angularjs)
+- .....
 - [Competitive Programmer's Core Skills](https://www.coursera.org/learn/competitive-programming-core-skills)
 - [Algorithms, Part I](https://www.coursera.org/learn/algorithms-part1)
 - [Neural Networks and Deep Learning](https://www.coursera.org/learn/neural-networks-deep-learning)
@@ -70,8 +70,8 @@ This repository contains my solutions and programming assignments for online cou
 - [Java Certification: OCA (1Z0-808) Exam Simulation](https://www.udemy.com/course/java-oca/) - August 2020
 - [Java Multithreading](https://www.udemy.com/course/java-multithreading/) - December 2020 - [Files](https://github.com/oguzaktas/online-courses/tree/master/udemy/java-multithreading)
 - [Exam 70-480: Programming in HTML5 with JavaScript and CSS3 Practice Tests](https://www.udemy.com/course/70-480-programming-in-html5-with-js-css3-practice-tests-n/) - January 2021
-- .....
 - [Java Certification: OCP (1Z0-809) Exam Simulation](https://www.udemy.com/course/java-ocp/)
+- .....
 - [The Complete TOEFL iBT Success Course](https://www.udemy.com/course/the-complete-toefl-ibt-success-course/)
 - [Angular The Complete Guide](https://www.udemy.com/course/the-complete-guide-to-angular-2/)
 - [Spring Framework and Spring Boot for Java](https://www.udemy.com/course/java-spring-social-network/)
@@ -90,14 +90,27 @@ This repository contains my solutions and programming assignments for online cou
 - [Angular: The Big Picture](https://www.pluralsight.com/courses/ng-big-picture) - March 2021 - [Files](https://github.com/oguzaktas/online-courses/tree/master/pluralsight/angular-the-big-picture)
 - [Angular: Getting Started](https://www.pluralsight.com/courses/angular-2-getting-started-update) - March 2021 - [Files](https://github.com/oguzaktas/online-courses/tree/master/pluralsight/angular-getting-started)
 - [Angular Forms](https://www.pluralsight.com/courses/angular-forms) - April 2021 - [Files](https://github.com/oguzaktas/online-courses/tree/master/pluralsight/angular-forms)
+- [The C Programming Language in Action](https://www.pluralsight.com/courses/c-programming-language-in-action)
 - .....
 - [Angular Fundamentals](https://www.pluralsight.com/courses/angular-fundamentals)
-- [The C Programming Language in Action](https://www.pluralsight.com/courses/c-programming-language-in-action)
-- [RxJS in Angular: Reactive Development](https://www.pluralsight.com/courses/rxjs-angular-reactive-development)
+- [Angular Routing](https://www.pluralsight.com/courses/angular-routing)
 - [Angular Reactive Forms](https://www.pluralsight.com/courses/angular-2-reactive-forms)
+- [RxJS in Angular: Reactive Development](https://www.pluralsight.com/courses/rxjs-angular-reactive-development)
+- [Angular NgRx: Getting Started](https://www.pluralsight.com/courses/angular-ngrx-getting-started)
 - [Styling Angular Applications](https://www.pluralsight.com/courses/styling-angular-applications)
+- [Angular HTTP Communication](https://www.pluralsight.com/courses/angular-http-communication)
+- [Angular Services](https://www.pluralsight.com/courses/angular-services)
+- [Angular Architecture and Best Practices](https://www.pluralsight.com/courses/angular-architecture-best-practices)
+- [Creating Asynchronous TypeScript Code](https://www.pluralsight.com/courses/typescript-asynchronous-code)
 - [Configuring, Compiling, and Debugging TypeScript Projects](https://www.pluralsight.com/courses/typescript-projects-configuring-compiling-debugging)
+- [Using TypeScript Modules](https://www.pluralsight.com/courses/typescript-modules)
+- [Creating and Using Generics in TypeScript](https://www.pluralsight.com/courses/typescript-generics-creating-using)
 - [Debugging Sites Using Chrome DevTools](https://www.pluralsight.com/courses/debugging-sites-chrome-devtools)
+- [React: The Big Picture](https://www.pluralsight.com/courses/react-big-picture)
+- [SOLID Software Design Principles in Java](https://www.pluralsight.com/courses/solid-software-design-principles-java)
+- [Exploring Java Machine Learning Environments](https://www.pluralsight.com/courses/java-machine-learning-environments)
+- [Contributing to an Open Source Project on GitHub](https://www.pluralsight.com/courses/contributing-open-source-project-github)
+- .....
 
 ### Skillsoft
 

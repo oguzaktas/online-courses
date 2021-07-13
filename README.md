@@ -90,9 +90,9 @@ This repository contains my solutions and programming assignments for online cou
 - [Angular: The Big Picture](https://www.pluralsight.com/courses/ng-big-picture) - March 2021 - [Files](https://github.com/oguzaktas/online-courses/tree/master/pluralsight/angular-the-big-picture)
 - [Angular: Getting Started](https://www.pluralsight.com/courses/angular-2-getting-started-update) - March 2021 - [Files](https://github.com/oguzaktas/online-courses/tree/master/pluralsight/angular-getting-started)
 - [Angular Forms](https://www.pluralsight.com/courses/angular-forms) - April 2021 - [Files](https://github.com/oguzaktas/online-courses/tree/master/pluralsight/angular-forms)
-- [The C Programming Language in Action](https://www.pluralsight.com/courses/c-programming-language-in-action)
 - .....
 - [Angular Fundamentals](https://www.pluralsight.com/courses/angular-fundamentals)
+- [The C Programming Language in Action](https://www.pluralsight.com/courses/c-programming-language-in-action)
 - [Angular Routing](https://www.pluralsight.com/courses/angular-routing)
 - [Angular Reactive Forms](https://www.pluralsight.com/courses/angular-2-reactive-forms)
 - [RxJS in Angular: Reactive Development](https://www.pluralsight.com/courses/rxjs-angular-reactive-development)

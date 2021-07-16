@@ -90,6 +90,7 @@ This repository contains my solutions and programming assignments for online cou
 - [Angular: The Big Picture](https://www.pluralsight.com/courses/ng-big-picture) - March 2021 - [Files](https://github.com/oguzaktas/online-courses/tree/master/pluralsight/angular-the-big-picture)
 - [Angular: Getting Started](https://www.pluralsight.com/courses/angular-2-getting-started-update) - March 2021 - [Files](https://github.com/oguzaktas/online-courses/tree/master/pluralsight/angular-getting-started)
 - [Angular Forms](https://www.pluralsight.com/courses/angular-forms) - April 2021 - [Files](https://github.com/oguzaktas/online-courses/tree/master/pluralsight/angular-forms)
+- [Debugging Sites Using Chrome DevTools](https://www.pluralsight.com/courses/debugging-sites-chrome-devtools) - July 2021 - [Files](https://github.com/oguzaktas/online-courses/tree/master/pluralsight/debugging-sites-using-chrome-devtools)
 - ..... (Planned courses) .....
 - [Angular Fundamentals](https://www.pluralsight.com/courses/angular-fundamentals)
 - [The C Programming Language in Action](https://www.pluralsight.com/courses/c-programming-language-in-action)
@@ -105,7 +106,6 @@ This repository contains my solutions and programming assignments for online cou
 - [Configuring, Compiling, and Debugging TypeScript Projects](https://www.pluralsight.com/courses/typescript-projects-configuring-compiling-debugging)
 - [Using TypeScript Modules](https://www.pluralsight.com/courses/typescript-modules)
 - [Creating and Using Generics in TypeScript](https://www.pluralsight.com/courses/typescript-generics-creating-using)
-- [Debugging Sites Using Chrome DevTools](https://www.pluralsight.com/courses/debugging-sites-chrome-devtools)
 - [React: The Big Picture](https://www.pluralsight.com/courses/react-big-picture)
 - [SOLID Software Design Principles in Java](https://www.pluralsight.com/courses/solid-software-design-principles-java)
 - [Exploring Java Machine Learning Environments](https://www.pluralsight.com/courses/java-machine-learning-environments)

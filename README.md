@@ -22,8 +22,8 @@ This repository contains my solutions and programming assignments for online cou
 - [Machine Learning](https://www.coursera.org/learn/machine-learning) - May 2020 - [Files](https://github.com/oguzaktas/online-courses/tree/master/coursera/machine-learning)
 - [Java Programming: Principles of Software Design](https://www.coursera.org/learn/java-programming-design-principles) - August 2020 - [Files](https://github.com/oguzaktas/online-courses/tree/master/coursera/java-programming-principles-of-software-design)
 - [Kotlin for Java Developers](https://www.coursera.org/learn/kotlin-for-java-developers) - December 2020 - [Files](https://github.com/oguzaktas/online-courses/tree/master/coursera/kotlin-for-java-developers)
-- [Single Page Web Applications with AngularJS](https://www.coursera.org/learn/single-page-web-apps-with-angularjs)
 - .....
+- [Single Page Web Applications with AngularJS](https://www.coursera.org/learn/single-page-web-apps-with-angularjs)
 - [Competitive Programmer's Core Skills](https://www.coursera.org/learn/competitive-programming-core-skills)
 - [Algorithms, Part I](https://www.coursera.org/learn/algorithms-part1)
 - [Neural Networks and Deep Learning](https://www.coursera.org/learn/neural-networks-deep-learning)

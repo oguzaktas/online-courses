@@ -22,7 +22,7 @@ This repository contains my solutions and programming assignments for online cou
 - [Machine Learning](https://www.coursera.org/learn/machine-learning) - May 2020 - [Files](https://github.com/oguzaktas/online-courses/tree/master/coursera/machine-learning)
 - [Java Programming: Principles of Software Design](https://www.coursera.org/learn/java-programming-design-principles) - August 2020 - [Files](https://github.com/oguzaktas/online-courses/tree/master/coursera/java-programming-principles-of-software-design)
 - [Kotlin for Java Developers](https://www.coursera.org/learn/kotlin-for-java-developers) - December 2020 - [Files](https://github.com/oguzaktas/online-courses/tree/master/coursera/kotlin-for-java-developers)
-- .....
+- ..... (Planned courses)
 - [Single Page Web Applications with AngularJS](https://www.coursera.org/learn/single-page-web-apps-with-angularjs)
 - [Competitive Programmer's Core Skills](https://www.coursera.org/learn/competitive-programming-core-skills)
 - [Algorithms, Part I](https://www.coursera.org/learn/algorithms-part1)
@@ -71,7 +71,7 @@ This repository contains my solutions and programming assignments for online cou
 - [Java Multithreading](https://www.udemy.com/course/java-multithreading/) - December 2020 - [Files](https://github.com/oguzaktas/online-courses/tree/master/udemy/java-multithreading)
 - [Exam 70-480: Programming in HTML5 with JavaScript and CSS3 Practice Tests](https://www.udemy.com/course/70-480-programming-in-html5-with-js-css3-practice-tests-n/) - January 2021
 - [Java Certification: OCP (1Z0-809) Exam Simulation](https://www.udemy.com/course/java-ocp/)
-- .....
+- ..... (Planned courses)
 - [The Complete TOEFL iBT Success Course](https://www.udemy.com/course/the-complete-toefl-ibt-success-course/)
 - [Angular The Complete Guide](https://www.udemy.com/course/the-complete-guide-to-angular-2/)
 - [Spring Framework and Spring Boot for Java](https://www.udemy.com/course/java-spring-social-network/)
@@ -90,7 +90,7 @@ This repository contains my solutions and programming assignments for online cou
 - [Angular: The Big Picture](https://www.pluralsight.com/courses/ng-big-picture) - March 2021 - [Files](https://github.com/oguzaktas/online-courses/tree/master/pluralsight/angular-the-big-picture)
 - [Angular: Getting Started](https://www.pluralsight.com/courses/angular-2-getting-started-update) - March 2021 - [Files](https://github.com/oguzaktas/online-courses/tree/master/pluralsight/angular-getting-started)
 - [Angular Forms](https://www.pluralsight.com/courses/angular-forms) - April 2021 - [Files](https://github.com/oguzaktas/online-courses/tree/master/pluralsight/angular-forms)
-- .....
+- ..... (Planned courses)
 - [Angular Fundamentals](https://www.pluralsight.com/courses/angular-fundamentals)
 - [The C Programming Language in Action](https://www.pluralsight.com/courses/c-programming-language-in-action)
 - [Angular Routing](https://www.pluralsight.com/courses/angular-routing)
@@ -177,5 +177,6 @@ This repository contains my solutions and programming assignments for online cou
 
 ### MongoDB University
 
+- ..... (Planned courses)
 - [MongoDB Basics](https://university.mongodb.com/courses/M001/about)
 

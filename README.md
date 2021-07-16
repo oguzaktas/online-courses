@@ -175,8 +175,3 @@ This repository contains my solutions and programming assignments for online cou
 - [Compute Fundamentals for AWS](https://cloudacademy.com/course/compute-fundamentals-for-aws/) - November 2020
 - [Cloud Literacy](https://cloudacademy.com/learning-paths/cloud-literacy-956/) - November 2020
 
-### MongoDB University
-
-- ..... (Planned courses)
-- [MongoDB Basics](https://university.mongodb.com/courses/M001/about)
-

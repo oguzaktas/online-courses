@@ -42,6 +42,7 @@ This repository contains my solutions and programming assignments for online cou
 - [Angular: Getting Started](https://www.pluralsight.com/courses/angular-2-getting-started-update) - March 2021 - [Files](https://github.com/oguzaktas/online-courses/tree/master/pluralsight/angular-getting-started)
 - [Angular Forms](https://www.pluralsight.com/courses/angular-forms) - April 2021 - [Files](https://github.com/oguzaktas/online-courses/tree/master/pluralsight/angular-forms)
 - [Debugging Sites Using Chrome DevTools](https://www.pluralsight.com/courses/debugging-sites-chrome-devtools) - July 2021 - [Files](https://github.com/oguzaktas/online-courses/tree/master/pluralsight/debugging-sites-using-chrome-devtools)
+- [The C Programming Language in Action](https://www.pluralsight.com/courses/c-programming-language-in-action) - August 2021 - [Files](https://github.com/oguzaktas/online-courses/tree/master/pluralsight/the-c-programming-language-in-action)
 
 ### Skillsoft
 

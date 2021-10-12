@@ -92,6 +92,9 @@ This repository contains my solutions and programming assignments for online cou
 - [Angular Forms](https://www.pluralsight.com/courses/angular-forms) - April 2021 - [Files](https://github.com/oguzaktas/online-courses/tree/master/pluralsight/angular-forms)
 - [Debugging Sites Using Chrome DevTools](https://www.pluralsight.com/courses/debugging-sites-chrome-devtools) - July 2021 - [Files](https://github.com/oguzaktas/online-courses/tree/master/pluralsight/debugging-sites-using-chrome-devtools)
 - [The C Programming Language in Action](https://www.pluralsight.com/courses/c-programming-language-in-action) - August 2021 - [Files](https://github.com/oguzaktas/online-courses/tree/master/pluralsight/the-c-programming-language-in-action)
+- [Designing a Machine Learning Model](https://www.pluralsight.com/courses/designing-machine-learning-model)
+- [Creating Machine Learning Models](https://www.pluralsight.com/courses/creating-machine-learning-models)
+- [Building Classification Models with TensorFlow](https://www.pluralsight.com/courses/tensorflow-building-classification-models)
 - ..... (Planned courses) .....
 - [Angular Fundamentals](https://www.pluralsight.com/courses/angular-fundamentals)
 - [Angular Routing](https://www.pluralsight.com/courses/angular-routing)

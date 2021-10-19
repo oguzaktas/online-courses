@@ -6,6 +6,7 @@ This repository contains my solutions and programming assignments for online cou
 - Udemy: https://www.udemy.com/user/oguz-aktas/
 - Pluralsight: https://app.pluralsight.com/profile/oguzaktas
 - DataCamp: https://www.datacamp.com/profile/oguzaktas
+- NVIDIA Deep Learning Institute: https://courses.nvidia.com/u/oguz
 
 ## Completed Courses
 

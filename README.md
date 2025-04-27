@@ -1,9 +1,9 @@
 # Online Courses
 
 This repository contains my solutions and programming assignments for online courses that I have completed.
-- Coursera: https://www.coursera.org/user/429bc5ad6fa3a6ef6d5b1311627e623b
+- Coursera: https://www.coursera.org/learner/oguzaktas
 - edX: https://profile.edx.org/u/oguzaktas
-- Udemy: https://www.udemy.com/user/oguz-aktas/
+- Udemy: https://www.udemy.com/user/oguz-aktas
 - Pluralsight: https://app.pluralsight.com/profile/oguzaktas
 - DataCamp: https://www.datacamp.com/profile/oguzaktas
 - NVIDIA Deep Learning Institute: https://courses.nvidia.com/u/oguz
@@ -23,6 +23,11 @@ This repository contains my solutions and programming assignments for online cou
 - [Machine Learning](https://www.coursera.org/learn/machine-learning) - May 2020 - [Files](https://github.com/oguzaktas/online-courses/tree/master/coursera/machine-learning)
 - [Java Programming: Principles of Software Design](https://www.coursera.org/learn/java-programming-design-principles) - August 2020 - [Files](https://github.com/oguzaktas/online-courses/tree/master/coursera/java-programming-principles-of-software-design)
 - [Kotlin for Java Developers](https://www.coursera.org/learn/kotlin-for-java-developers) - December 2020 - [Files](https://github.com/oguzaktas/online-courses/tree/master/coursera/kotlin-for-java-developers)
+- [Algorithms, Part I](https://www.coursera.org/learn/algorithms-part1)
+- [Algorithms, Part II](https://www.coursera.org/learn/algorithms-part2)
+- [Building Scalable Java Microservices with Spring Boot and Spring Cloud](https://www.coursera.org/learn/google-cloud-java-spring)
+- [Spring Framework Specialization](https://www.coursera.org/specializations/spring-framework)
+- [Natural Language Processing Specialization](https://www.coursera.org/specializations/natural-language-processing)
 
 ### edX
 
@@ -35,7 +40,7 @@ This repository contains my solutions and programming assignments for online cou
 - [Java Certification: OCA (1Z0-808) Exam Simulation](https://www.udemy.com/course/java-oca/) - August 2020
 - [Java Multithreading](https://www.udemy.com/course/java-multithreading/) - December 2020 - [Files](https://github.com/oguzaktas/online-courses/tree/master/udemy/java-multithreading)
 - [Exam 70-480: Programming in HTML5 with JavaScript and CSS3 Practice Tests](https://www.udemy.com/course/70-480-programming-in-html5-with-js-css3-practice-tests-n/) - January 2021
-- [Java Certification: OCP (1Z0-809) Exam Simulation](https://www.udemy.com/course/java-ocp/)
+- [Java SE 17 Developer (1Z0-829) Practice Tests](https://www.udemy.com/course/java-se-17-developer-exam-number-1z0-829/) - September 2023
 
 ### Pluralsight
 
@@ -57,18 +62,18 @@ This repository contains my solutions and programming assignments for online cou
 
 - [Introduction to Python](https://www.datacamp.com/courses/introduction-to-python) - September 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/introduction-to-python)
 - [Intermediate Python](https://www.datacamp.com/courses/intermediate-python) - September 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/intermediate-python-for-data-science)
-- [Python Data Science Toolbox (Part 1)](https://www.datacamp.com/courses/python-data-science-toolbox-part-1) - September 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/python-data-science-toolbox-part1)
-- [Python Data Science Toolbox (Part 2)](https://www.datacamp.com/courses/python-data-science-toolbox-part-2) - September 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/python-data-science-toolbox-part2)
+- [Introduction to Functions in Python](https://www.datacamp.com/courses/introduction-to-functions-in-python) - September 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/python-data-science-toolbox-part1)
+- [Python Toolbox](https://www.datacamp.com/courses/python-toolbox) - September 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/python-data-science-toolbox-part2)
 - [Statistical Thinking in Python (Part 1)](https://www.datacamp.com/courses/statistical-thinking-in-python-part-1) - November 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/statistical-thinking-in-python-part1)
-- [Supervised Learning with scikit-learn](https://www.datacamp.com/courses/supervised-learning-with-scikit-learn) - November 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/supervised-learning-with-scikit-learn)
+- [Machine Learning with scikit-learn](https://www.datacamp.com/courses/supervised-learning-with-scikit-learn) - November 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/machine-learning-with-scikit-learn)
 - [Unsupervised Learning in Python](https://www.datacamp.com/courses/unsupervised-learning-in-python) - November 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/unsupervised-learning-in-python)
 - [Linear Classifiers in Python](https://www.datacamp.com/courses/linear-classifiers-in-python) - November 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/linear-classifiers-in-python)
 - [Case Study: School Budgeting with Machine Learning in Python](https://www.datacamp.com/courses/case-study-school-budgeting-with-machine-learning-in-python) - November 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/machine-learning-with-the-experts-school-budgets)
 - [Introduction to Deep Learning in Python](https://www.datacamp.com/courses/introduction-to-deep-learning-in-python) - November 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/introduction-to-deep-learning-in-python)
-- [Software Engineering for Data Scientists in Python](https://www.datacamp.com/courses/software-engineering-for-data-scientists-in-python) - November 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/software-engineering-for-data-scientists)
+- [Software Engineering Principles in Python](https://www.datacamp.com/courses/software-engineering-principles-in-python) - November 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/software-engineering-for-data-scientists)
 - [Image Processing in Python](https://www.datacamp.com/courses/image-processing-in-python) - December 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/image-processing-in-python)
 - [Biomedical Image Analysis in Python](https://www.datacamp.com/courses/biomedical-image-analysis-in-python) - January 2020 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/biomedical-image-analysis-in-python)
-- [Image Processing with Keras in Python](https://www.datacamp.com/courses/image-processing-with-keras-in-python) - January 2020 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/image-processing-with-keras-in-python)
+- [Image Modeling with Keras](https://www.datacamp.com/courses/image-modeling-with-keras) - January 2020 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/image-processing-with-keras-in-python)
 - [Introduction to SQL](https://www.datacamp.com/courses/introduction-to-sql) - March 2020 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/introduction-to-sql)
 - [Joining Data in SQL](https://www.datacamp.com/courses/joining-data-in-postgresql) - May 2020 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/joining-data-in-sql)
 - [Introduction to Deep Learning with Keras](https://www.datacamp.com/courses/introduction-to-deep-learning-with-keras) - May 2020 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/introduction-to-deep-learning-with-keras)
@@ -78,10 +83,28 @@ This repository contains my solutions and programming assignments for online cou
 - [Introduction to Git](https://www.datacamp.com/courses/introduction-to-git) - September 2020
 - [Introduction to Scala](https://www.datacamp.com/courses/introduction-to-scala) - October 2020 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/introduction-to-scala)
 - [Introduction to Shell](https://www.datacamp.com/courses/introduction-to-shell) - October 2020
-- [Cloud Computing for Everyone](https://www.datacamp.com/courses/cloud-computing-for-everyone) - December 2020
+- [Understanding Cloud Computing](https://www.datacamp.com/courses/understanding-cloud-computing) - December 2020
 - [Writing Functions in Python](https://www.datacamp.com/courses/writing-functions-in-python) - December 2020 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/writing-functions-in-python)
 - [Writing Efficient Python Code](https://www.datacamp.com/courses/writing-efficient-python-code) - December 2020 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/writing-efficient-python-code)
 - [Practicing Coding Interview Questions in Python](https://www.datacamp.com/courses/practicing-coding-interview-questions-in-python) - December 2020 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/practicing-coding-interview-questions-in-python)
+- [Extreme Gradient Boosting with XGBoost](https://www.datacamp.com/courses/extreme-gradient-boosting-with-xgboost) - February 2023 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/extreme-gradient-boosting-with-xgboost)
+- [Supervised Learning with scikit-learn](https://www.datacamp.com/courses/supervised-learning-with-scikit-learn) - February 2023 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/supervised-learning-with-scikit-learn)
+- [Introduction to Data Science in Python](https://www.datacamp.com/courses/introduction-to-data-science-in-python) - February 2023 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/introduction-to-data-science-in-python)
+- [Data Manipulation with pandas](https://www.datacamp.com/courses/data-manipulation-with-pandas) - February 2023 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/data-manipulation-with-pandas)
+- [Data Types in Python](https://www.datacamp.com/courses/data-types-in-python) - February 2023 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/data-types-in-python)
+- [Working with Dates and Times in Python](https://www.datacamp.com/courses/working-with-dates-and-times-in-python) - February 2023 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/working-with-dates-and-times-in-python)
+- [Web Scraping with Python](https://www.datacamp.com/courses/web-scraping-with-python) - February 2023 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/web-scraping-with-python)
+- [Developing Python Packages](https://www.datacamp.com/courses/developing-python-packages) - February 2023 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/developing-python-packages)
+- [Unit Testing for Data Science in Python](https://www.datacamp.com/courses/unit-testing-for-data-science-in-python) - February 2023 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/unit-testing-for-data-science-in-python)
+- [Object-Oriented Programming in Python](https://www.datacamp.com/courses/object-oriented-programming-in-python) - March 2023 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/object-oriented-programming-in-python)
+- [Transformer Models with PyTorch](https://www.datacamp.com/courses/transformer-models-with-pytorch)
+- [Reinforcement Learning from Human Feedback (RLHF)](https://www.datacamp.com/courses/reinforcement-learning-from-human-feedback-rlhf)
+- [LLMOps Concepts](https://www.datacamp.com/courses/llmops-concepts)
+- [Working with the OpenAI API](https://www.datacamp.com/courses/working-with-the-openai-api)
+- [Introduction to Embeddings with the OpenAI API](https://www.datacamp.com/courses/introduction-to-embeddings-with-the-openai-api)
+- [Retrieval Augmented Generation (RAG) with LangChain](https://www.datacamp.com/courses/retrieval-augmented-generation-rag-with-langchain)
+- [Building RAG Chatbots for Technical Documentation](https://www.datacamp.com/projects/2041)
+- [Designing Agentic Systems with LangChain](https://www.datacamp.com/courses/designing-agentic-systems-with-langchain)
 
 ### NVIDIA Deep Learning Institute
 
@@ -97,6 +120,7 @@ This repository contains my solutions and programming assignments for online cou
 - [Entrepreneurship Foundations](https://www.linkedin.com/learning/entrepreneurship-foundations-2) - October 2019
 - [SOLID Programming Principles](https://www.linkedin.com/learning/learning-s-o-l-i-d-programming-principles) - November 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/linkedin-learning/solid-programming-principles)
 - [Developer Career Paths and Certifications](https://www.linkedin.com/learning/developer-career-paths-and-certifications) - November 2019
+- [Atlassian Agile Project Management Professional Certificate](https://www.linkedin.com/learning/paths/atlassian-agile-project-management-professional-certificate)
 
 ### Linux Academy
 

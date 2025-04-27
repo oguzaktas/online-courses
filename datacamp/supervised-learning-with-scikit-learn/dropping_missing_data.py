@@ -1,26 +1,11 @@
-'''
-Instructions
-- Explore the DataFrame df in the IPython Shell. Notice how the missing value is represented.
-- Convert all '?' data points to np.nan.
-- Count the total number of NaNs using the .isnull() and .sum() methods. This has been done for you.
-- Drop the rows with missing values from df using .dropna().
-- Hit 'Submit Answer' to see how many rows were lost by dropping the missing values.
-'''
+# Print missing values for each column
+print(music_df.isna().sum().sort_values())
 
-import numpy as np
-import pandas as pd
+# Remove values where less than 5% are missing
+music_df = music_df.dropna(subset=["genre", "popularity", "loudness", "liveness", "tempo"])
 
-# Convert '?' to NaN
-df[df == '?'] = np.nan
+# Convert genre to a binary feature
+music_df["genre"] = np.where(music_df["genre"] == "Rock", 1, 0)
 
-# Print the number of NaNs
-print(df.isnull().sum())
-
-# Print shape of original DataFrame
-print("Shape of Original DataFrame: {}".format(df.shape))
-
-# Drop missing values and print shape of new DataFrame
-df = df.dropna()
-
-# Print shape of new DataFrame
-print("Shape of DataFrame After Dropping All Rows with Missing Values: {}".format(df.shape))
+print(music_df.isna().sum().sort_values())
+print("Shape of the `music_df`: {}".format(music_df.shape))

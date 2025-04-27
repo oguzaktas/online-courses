@@ -1,0 +1,318 @@
+Container sequences -> hold other types of data, used for aggregation, sorting and more (list [mutable], set [mutable], tuple [immutable])
+
+Immutability allow us to protect our reference data and replace individual data points with sums, averages, derivations etc.
+
+Iterating sequence data allows us to group data, aggregate it, and process it over time.
+
+Lists -> hold data in order it was added, mutable, index
+list.append('....')
+
+Combining lists:
+desserts = cookies + cakes
+.extend() method merges a list into another list at the end
+
+.index() method locates the position of a data element in a list
+position = cookies.index('sugar')
+cookies[3]
+
+.pop() method removes an item from a list with index argument and allows to save it
+name = cookies.pop(position)
+
+Iterating over lists:
+for cookie in cookies:
+	print(cookie)
+
+.sorted() function sorts data in numerical or alphabetical order and returns a new list
+sorted_cookies = sorted(cookies) -> sorted in alphabetical order
+
+Tuple -> hold data in order, easier to process and more memory efficient than lists, index, immutable (we can't add or remove elements from tuples, we can use them to ensure that our data is not altered)
+
+Zipping tuples -> tuples are commonly created by zipping lists together with .zip()
+top_pairs = list(zip(us_cookies, in_cookies)) -> list of tuples
+
+Unpacking tuples (tuple expansion):
+us_num_1, in_num_1 = top_pairs[0]
+
+Unpacking is especially powerful in loops
+
+Enumerating positions -> another useful tuple creation method is the enumerate() function, enumeration is used in loops to return the position and the data in that position while looping
+
+for idx, item in enumerate(top_pairs):
+	us_cookie, in_cookie = item
+	print(idx, us_cookie, in_cookie)
+
+zip() function is used to pair up multiple array data types
+
+Making tuples by accident -> create a variable and follow the assignment with a comma
+error = ('trailing comma',)
+
+Sets are excellent for finding all the unique values in a column of your data, a list of elements, or even rows from a file.
+
+Set -> store unique elements in unordered, mutable
+Modifying sets -> .add() method adds single elements, .update() method merges in another set or list
+Removing data from sets -> .discard() safely removes an element from the set by value (no error will be thrown if the value is not found), .pop() removes and returns an arbitrary element from the set (KeyError when empty)
+
+discard() -> no error if the value is not found
+pop() -> KeyError when empty
+
+Set operations -> .union() set method returns a set of all the names (or)
+.intersection() method identifies overlapping data (and)
+.difference() method identifies data present in the set on which the method was used that is not in the arguments
+
+Creating and looping through dictionaries -> hold data in key/value pairs, nestable (use a dictionary as the value of a key within a dictionary), iterable, dictionaries are created with dict() method or {}
+
+art_galleries = {}
+for name, zip_code in galleries:
+	art_galleries[name] = zip_code
+
+Safely finding by key -> art_galleries['Louvre'] -> if key is not present, KeyError will be thrown
+.get() method allows to safely access a key without error or exception handling, if a key is not in the dictionary, .get() returns None by default or you can supply a value to return
+
+art_galleries.get('Louvre', 'Not Found')
+
+Working with nested dictionaries:
+art_galleries.keys() -> .keys() method shows the keys for a given dictionary
+
+sorted(reverse=True) -> reverse ordering
+
+Adding and extending dictionaries:
+.update() method to update a dictionary from another dictionary, tuples or keywords
+
+Popping and deleting from dictionaries:
+del instruction deletes a key/value -> del will throw a KeyError if the key you are trying to delete does not exist
+.pop() method safely removes a key/value from a dictionary
+
+.items() method returns an object we can iterate over it as a list of key/value tuples
+
+for gallery, phone_num in art_galleries.items():
+	......
+
+in operator is much more efficient and clearer than .get()
+
+if '10010' in art_galleries:
+	print(......)
+else:
+	.........
+
+CSV (comma separated values) -> most common way to dump data from a database or storage system
+open() function provides a variable that represents a file, takes a path and a mode
+csv.reader() reads a file object and returns the lines from the file as tuples
+.close() method closes file objects
+
+csv module:
+import csv
+csvfile = open('ART_GALLERY.csv', 'r')
+for row in csv.reader(csvfile):
+	print(row)
+csvfile.close()
+
+Creating a dictionary from a file (DictReader convert CSV file to OrderedDict):
+for row in csv.DictReader(csvfile):
+	print(row) -> OrderedDict, look like a list of tuples but it operates just like a normal dictionary
+
+collections module -> part of Python standard library, contains advanced data containers
+Counter -> special dictionary used for counting data, measuring frequency
+
+from collections import Counter
+nyc_eatery_count_by_types = Counter(nyc_eatery_types)
+print(nyc_eatery_count_by_types)
+print(nyc_eatery_count_by_types['Restaurant'])
+
+.most_common() method returns the counter values in descending order, useful for frequency analysis
+print(nyc_eatery_count_by_types.most_common(3))
+
+defaultdict -> pass it a default type that every key will have even if it doesn't currently exist, works exactly like a dictionary
+
+from collections import defaultdict
+eateries_by_park = defaultdict(list)
+for park_id, name in nyc_eateries_parks:
+	eateries_by_park[park_id].append(name)
+print(eateries_by_park['M010'])
+
+from collections import defaultdict
+eatery_contact_types = defaultdict(int)
+for eatery in nyc_eateries:
+	if eatery.get('phone'):
+		eatery_contact_types['phones'] += 1
+	if eatery.get('website'):
+		eatery_contact_types['websites'] += 1
+print(eatery_contact_types)
+
+The functionality of both dictionaries and defaultdict are almost same except for the fact that defaultdict never raises a KeyError. It provides a default value for the key that does not exists.
+
+Storing data in order by date or by a ranking -> Normal dictionaries don't maintain order of the keys
+Python version < 3.6 not ordered, Python version >= 3.6 ordered
+collections module provides an OrderedDict that maintains the order that maintains keys and values as they were added to the dictionary without regard for Python version
+
+from collections import OrderedDict
+nyc_eatery_permits = OrderedDict()
+for eatery in nyc_eateries:
+	nyc_eatery_permits[eatery['end_date']] = eatery
+print(list(nyc_eatery_permits.items())[:3])
+
+.popitem() method of OrderedDict returns items in reverse insertion order
+print(nyc_eatery_permits.popitem())
+
+to return the items in insertion order: last=False attribute of popitem method is used
+print(nyc_eatery_permits.popitem(last=False))
+
+namedtuple -> tuple where each position (column) has a name, ensure each one has the same properties, alternative to a pandas DataFrame row
+
+Creating a namedtuple (pass a name and a list of fields):
+from collections import namedtuple
+Eatery = namedtuple('Eatery', ['name', 'location', 'park_id', ...: 'type_name'])
+eateries = []
+for eatery in nyc_eateries:
+	details = Eatery(eatery['name'],
+			    eatery['location'],
+			    eatery['park_id'],
+			    eatery['type_name'])
+	eateries.append(details)
+print(eateries[0])
+
+namedtuples make code clearer because each field is available as an attribute (named field or data storage location)
+
+From string to datetime -> using the datetime type from inside the datetime module
+.strptime() method converts from a string to a datetime object (string to datetime)
+
+Parsing strings into datetimes:
+from datetime import datetime
+print(parking_violations_date)
+date_dt = datetime.strptime(parking_violations_date, '%m/%d/%Y')
+
+Datetime to string -> .strftime() method uses a format string to convert a datetime object to a string
+date_dt.strftime('%m/%d/%Y') -> '06/11/2016'
+.isoformat() method outputs a datetime as an ISO standard string (ISO-8601)
+date_dt.isoformat() -> '2016-06-11T00:00:00'
+
+Datetime components -> day, month, year, hour, minute, second and more are available from a datetime instance, great for grouping data
+daily_violations = defaultdict(int)
+for violation in parking_violations:
+	violation_date = datetime.strptime(violation[4], '%m/%d/%Y')
+	daily_violations[violation_date.day] += 1
+print(sorted(daily_violations.items()))
+
+.now() method returns the current local datetime
+.utcnow() method returns the current UTC datetime
+
+from datetime import datetime
+local_dt = datetime.now()
+print(local_dt) -> 2017-05-05 12:30:00.740415
+utc_dt = datetime.utcnow()
+print(utc_dt) -> 2017-05-05 17:30:05.467221
+
+Timezones -> naive datetime objects have no timezone data, aware datetime objects have a timezone
+Timezone data is available via the pytz module via the timezone object
+Aware objects have .astimezone() so you can get the time in another timezone
+
+from pytz import timezone
+record_dt = datetime.strptime('07/12/2016 04:39PM', ...: '%m/%d/%Y %H:%M%p')
+ny_tz = timezone('US/Eastern')
+a_tz = timezone('US/Pacific')
+ny_dt = record_dt.replace(tzinfo=ny_tz)
+la_dt = ny_dt.astimezone(la_tz)
+print(ny_dt) -> 2016-07-12 04:39:00-04:00
+print(la_dt) -> 2016-07-12 01:39:00-07:00
+
+In Python 3, you can make a datetime object "aware" by passing a timezone as the tzinfo keyword argument to the .replace() method on a datetime instance.
+
+An "aware" datetime object has an .astimezone() method that accepts a timezone object and returns a new datetime object in the desired timezone. If the tzinfo is not set for the datetime object it assumes the timezone of the computer you are working on.
+
+Adding and subtracting time:
+
+Incrementing through time:
+timedelta is used to represent an amount of change in time, used to add or subtract a set amount of time from a datetime object
+
+from datetime import datetime
+flashback = timedelta(days=90)
+print(record_dt) -> 2016-07-12 04:39:00
+print(record_dt - flashback) -> 2016-04-13 04:39:00
+print(record_dt + flashback) -> 2016-10-10 04:39:00
+
+Datetime differences -> use the - operator to calculate the difference, returns a timedelta with the difference
+time_diff = record_dt - record2_dt
+type(time_diff) -> datetime.timedelta
+print(time_diff) -> 0:00:04
+
+timedelta object from the datetime module is used to represent differences in datetime objects. You can create a timedelta by passing any number of keyword arguments such as days, seconds, microseconds, milliseconds, minutes, hours, and weeks to timedelta().
+
+pendulum library is used for some common datetime operations (parsing, converting and working with dates and times easier), it provides a powerful way to convert strings to pendulum datetime objects via .parse() method
+
+.parse() will attempt to convert a string to a pendulum datetime object without the need of the format string
+
+Parsing time with pendulum:
+import pendulum
+occurred = violation[4] + ' ' + violation[5] + 'M'
+occurred_dt = pendulum.parse(occurred, tz='US/Eastern')
+print(occured_dt) -> '2016-06-11T14:38:00-04:00'
+
+Timezone hopping with pendulum:
+.in_timezone() method converts a pendulum time object to a desired timezone.
+.now() method accepts a timezone you want to get the current time in
+
+More timezone hopping:
+for violation_dt in violation_dts:
+	print(violation_dt.in_timezone('Asia/Tokyo'))
+print(pendulum.now('Asia/Tokyo')) -> <Pendulum [2017-05-06T08:20:40.104160+09:00]>
+
+Humanizing differences:
+.in_XXX() method provide the difference in a chosen metric
+.in_words() provides the difference in a nice expressive form
+
+diff = violation_dts[3] - violation_dts[2] -> diff: <Period [......]>
+print(diff.in_words()) -> .. days .. hours .. minutes
+print(diff.in_days()) -> 2
+print(diff.in_hours()) -> 71
+
+import csv
+csvfile = open('ART_GALLERY.csv', 'r')
+for row in csv.reader(csvfile):
+	print(row)
+
+from collections import Counter
+nyc_eatery_count_by_types = Counter(nyc_eatery_types)
+
+daily_violations = defaultdict(int)
+for violation in parking_violations:
+	violation_date = datetime.strptime(violation[4], '%m/%d/%Y')
+	daily_violations[violation_date.day] += 1
+
+Group data by month:
+from collections import defaultdict
+eateries_by_park = defaultdict(list)
+for park_id, name in nyc_eateries_parks:
+	eateries_by_park[park_id].append(name)
+
+Find most common locations for crime each month:
+print(nyc_eatery_count_by_types.most_common(3))
+
+import csv
+csvfile = open('ART_GALLERY.csv', 'r')
+for row in csv.DictReader(csvfile):
+	print(row)
+
+Pop out the key and store the remaining dict:
+galleries_10310 = art_galleries.pop('10310')
+
+Pythonically iterate over dictionary:
+for zip_code, galleries in art_galleries.items():
+	print(zip_code)
+	print(galleries)
+
+Use sets for uniqueness:
+cookies = [......]
+types_of_cookies_eaten = set(cookies)
+cookies_jason_ate.difference(cookies_hugo_ate)
+
+
+
+
+
+
+
+
+
+
+
+
+

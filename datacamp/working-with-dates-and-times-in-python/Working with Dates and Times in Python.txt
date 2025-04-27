@@ -1,0 +1,253 @@
+- Dates and calendars
+- Combining dates and times
+- Time zones and daylight saving
+- Dates and times in pandas
+
+Creating date objects:
+from datetime import date
+two_hurricane_dates = [date(2016, 10, 7), date(2017, 6, 21)]  -> year, month, day
+print(two_hurricane_dates[0].year)
+print(two_hurricane_dates[0].month)
+print(two_hurricane_dates[0].day)
+print(two_hurricane_dates[0].weekday()) -> 4 (Friday), Monday: 0, Tuesday: 1, Wednesday: 2, Thursday: 3, ....
+
+Math with dates:
+from datetime import date
+d1 = date(2017, 11, 5)
+d2 = date(2017, 12, 4)
+l = [d1, d2]
+delta = d2 - d1
+print(delta.days)
+
+from datetime import timedelta
+td = timedelta(days=29)
+print(d1 + td)
+
+ISO 8601 format:
+from datetime import date
+d = date(2017, 11, 5)
+print(d)  -> ISO format: YYYY-MM-DD
+print([d.isoformat()])
+
+Every other format: strftime
+d = date(2017, 1, 5)
+print(d.strftime("%Y"))
+print(d.strftime("Year is %Y"))
+print(d.strftime("%Y/%m/%d"))
+
+Dates and times:
+from datetime import datetime
+dt = datetime(2017, 10, 1, 15, 23, 25, 500000) -> date - time (year, month, day, hour, minutes, seconds, microseconds): October 1 2017, 3:23:25 PM
+
+Explicit form:
+dt = datetime(year=2017, month=10, day=1, hour=15, minute=23, second=25, microsecond=500000)
+dt_hr = dt.replace(minute=0, second=0, microsecond=0)
+print(dt_hr) -> 2017-10-01 15:00:00
+
+Printing and parsing datetimes:
+dt = datetime(2017, 12, 30, 15, 19, 13)
+print(dt.strftime("%Y-%m-%d"))
+print(dt.strftime("%Y-%m-%d %H:%M:%S"))
+
+ISO-8601 format:
+print(dt.isoformat())
+
+String to datetime:
+dt = datetime.strptime("12/30/2017 15:19:13", "%m/%d/%Y %H:%M:%S")
+timestamp = 1514665153.0
+# convert to datetime and print
+print(datetime.fromtimestamp(ts))  -> 2017-12-30 15:19:13
+	
+%Y	4 digit year (0000-9999)
+%m	2 digit month (1-12)
+%d	2 digit day (1-31)
+%H	2 digit hour (0-23)
+%M	2 digit minute (0-59)
+%S	2 digit second (0-59)
+
+start = datetime(2017, 10, 8, 23, 46, 47)
+end = datetime(2017, 10, 9, 0, 10, 57)
+duration = end - start
+# subtract datetimes to create a timedelta
+print(duration.total_seconds())
+
+Creating timedeltas:
+from datetime import timedelta
+delta1 = timedelta(seconds=1)
+print(start + delta1)
+delta2 = timedelta(days=1, seconds=1)
+print(start + delta2)
+
+Timedeltas can be created with any number of weeks, days, minutes, hours, seconds, or microseconds
+
+# negative timedelta of 1 week
+delta3 = timedelta(weeks=-1)
+# one week earlier
+print(start + delta3)
+
+UTC offsets:
+from datetime import datetime, timedelta, timezone
+# US Eastern standard time zone
+ET = timezone(timedelta(hours=-5))
+# Timezone-aware datetime
+dt = datetime(2017, 12, 30, 15, 9, 9, tzinfo=ET)
+
+# India standard time zone
+ist = timezone(timedelta(hours=5, minutes=30))
+# convert to IST
+print(dt.astimezone(ist))  -> 2017-12-31 01:39:03+05:30
+
+Adjusting timezone vs changing tzinfo:
+print(dt.replace(tzinfo=timezone.utc))
+
+Time zone database:
+from datetime import datetime
+from dateutil import tz
+
+tz database:
+format: 'Continent/City'
+
+# Eastern time
+et = tz.gettz('America/New_York')  # Europe/London, America/Mexico_City, Africa/Accra, etc.
+# last ride
+last = datetime(2017, 12, 30, 15, 9, 3, tzinfo=et)
+print(last) -> 2017-12-30 15:09:03-05:00
+# first ride
+first = datetime(2017, 10, 1, 15, 23, 25, tzinfo=et)
+print(first)
+
+Daylight saving time (summer time):
+spring_ahead_159am = datetime(2017, 3, 12, 1, 59, 59)
+spring_ahead_159am.isoformat()  -> '2017-03-12T01:59:59'
+spring_ahead_3am = datetime(2017, 3, 12, 3, 0, 0)
+spring_ahead_3am.isoformat()  -> '2017-03-12T03:00:00'
+(spring_ahead_3am - spring_ahead_159am).total_seconds()  -> 3601.0
+
+from datetime import timezone, timedelta
+EST = timezone(timedelta(hours=-5))
+EDT = timezone(timedelta(hours=-4))
+spring_ahead_159am = spring_ahead_159am.replace(tzinfo=EST)
+spring_ahead_159am.isoformat()
+spring_ahead_3am = spring_ahead_3am.replace(tzinfo=EDT)
+spring_ahead_3am.isoformat()
+(spring_ahead_3am - spring_ahead_159am).seconds -> 1
+
+eastern = tz.gettz('US/Eastern')
+first_1am = datetime(2017, 11, 5, 1, 0, 0, tzinfo=eastern)
+tz.datetime_ambiguous(first_1am)
+second_1am = datetime(2017, 11, 5, 1, 0, 0, tzinfo=eastern)
+second_1am = tz.enfold(second_1am)
+(first_1am - second_1am).total_seconds()  -> 0.0
+first_1am = first_1am.astimezone(tz.UTC)  -> switch into UTC
+second_1am = second_1am.astimezone(tz.UTC)
+(second_1am - first_1am).total_seconds()  -> 3600.0
+
+Since Python does not handle tz.enfold() when doing arithmetic, we must put our datetime objects into UTC, where ambiguities have been resolved.
+
+tz.enfold() -> refers to the one after the daylight savings time change
+
+Reading date and time data in pandas:
+import pandas as pd
+rides = pd.read_csv('capital-onebike.csv')
+rides['Start date']  -> selecting a particular column using square brackets
+rides.iloc[2]  -> selecting a particular row (2nd row)
+
+Loading datetimes with parse_dates (if we want pandas treat columns as datetimes):
+rides = pd.read_csv('capital-onebike.csv', parse_dates = ['Start date', 'End date'])
+rides['Start date'] = pd.to_datetime(rides['Start date'], format="%Y-%m-%d %H:%M:%S")
+rides['Start date'].iloc[2]
+
+Timezone-aware arithmetic:
+# create a duration column
+rides['Duration'] = rides['End date'] - rides['Start date']
+rides['Duration'].dt.total_seconds().head(5)
+
+pandas has pd.read_excel(), pd.read_json(), and pd.read_clipboard() functions to read tabular data that you've copied from a document or website
+
+Summarizing data in pandas:
+rides['Duration'].mean()  -> average TimeDelta
+rides['Duration'].sum()  -> total TimeDelta
+# percent of time out of the dock
+rides['Duration'].sum() / timedelta(days=91)
+
+for non-numeric columns, we can use .value_counts()
+
+# count how many time the bike started at each station
+rides['Member type'].value_counts()
+# percent of rides by member
+rides['Member type'].value_counts() / len(rides)
+
+Summarizing datetime in pandas:
+# add duration (in seconds) column
+rides['Duration seconds'] = rides['Duration'].dt.total_seconds()
+# average duration per member type
+rides.groupby('Member type')['Duration seconds'].mean()
+
+pandas .groupby() takes a column name and does all subsequent operations on each group
+
+# average duration by month
+rides.resample('M', on='Start date')['Duration seconds'].mean()
+# size per group
+rides.groupby('Member type').size()  -> size of each group
+# first ride per group
+rides.groupby('Member type').first()  -> first row of each group
+rides.resample('M', on='Start date')['Duration seconds'].mean().plot()
+
+Timezones in pandas:
+rides['Duration'].dt.total_seconds().min()
+rides['Start date'].head(3).dt.tz_localize('America/New_York')
+
+# set a timezone and handle ambiguous datetimes
+rides['Start date'] = rides['Start date'].dt.tz_localize('America/New_York', ambiguous='NaT')
+
+NaT (not a time)
+
+# recalculate duration, ignoring bad row (problematic rows are set to NaT)
+rides['Duration'] = rides['End date'] - rides['Start date']
+# find the minimum
+rides['Duration'].dt.total_seconds().min()  -> 116.0
+
+# year of first 3 rows
+rides['Start date'].head(3).dt.year
+# see weekdays for first 3 rides
+rides['Start date'].head(3).dt.day_name()
+# shift the indexes forward 1, padding with NaT (0th row will be NaT, 1st row will be 0th row, 2th will be 1st, ....)
+rides['End date'].shift(1).head(3)
+
+Shifting is useful to line up the end times of each row with the start time of the next one.
+
+switching the timezone of a column -> .dt.tz_convert()
+
+dt.tz_convert() converts to a new timezone, whereas dt.tz_localize() sets a timezone in the first place.
+
+There are .dt attributes for all of the common things you might want to pull out of a datetime, such as the day, month, year, hour, and so on, and also some additional convenience ones, such as quarter and week of the year out of 52.
+
+- date() class takes a year, month, and day as arguments
+- A date object has accessors like .year and also methods like .weekday()
+- date objects can be compared like numbers, using min(), max(), and sort()
+- You can subtract 1 date from another to get a timedelta
+- To turn date objects into strings, use the .isoformat() or .strftime() methods
+- datetime() class takes all arguments of date(), + an hour, minute, second, and microsecond. All of the additional arguments are optional, otherwise they are set to 0 by default
+- You can replace any value in a datetime() with .replace() method
+- Convert a timedelta into an integer with its .total_seconds() method
+- Turn strings into dates with .strptime() and dates into strings with .strftime()
+- a datetime is timezone-aware when it has its tzinfo set, otherwise it is timezone naive
+- setting a timezone tells a datetime how to align itself to UTC, the universal time standard
+- use the .replace() method to change the timezone of a datetime, leaving the date and time the same
+- use the .astimezone() method to shift the date and time to match the new timezone
+- dateutil.tz provides a comprehensive, updated timezone database
+- when reading a csv, set the parse_dates argument to be the list of columns which should be parsed as datetimes
+- if setting parse_dates doesn't work, use the .pd.to_datetime() function
+- grouping rows with .groupby() lets you calculate aggregates per group. For example, .first(), .min() or .mean()
+- .resample() groups rows on the basis of a datetime column, by year, month, day, and so on
+- use .tz_localize() to set a timezone, keeping the date and time the same
+- use .tz_convert() to change the date and time to match a new timezone
+
+
+
+
+
+
+
+
+

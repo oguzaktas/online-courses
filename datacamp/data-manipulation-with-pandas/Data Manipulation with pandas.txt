@@ -1,0 +1,276 @@
+pandas -> for data manipulation, also used for data visualization
+pandas is built on top of 2 essential Python packages: NumPy and Matplotlib
+
+Exploring a DataFrame: .head() -> returns the first few rows of a DataFrame
+.info() -> info method displays the names of columns, the data types they contain, and whether they have any missing values
+.shape -> shape attribute contains a tuple that holds the number of rows followed by the number of columns
+.describe() method -> computes some summary statistics for numerical columns like mean and median
+.values (data values in a 2-dimensional NumPy array), .columns (column names), .index (row numbers or row names) attributes
+
+.head() returns the first few rows (the “head” of the DataFrame).
+.info()
+
+Sorting:
+dogs.sort_values("weight_kg", ascending=False)
+
+Sorting by multiple variables:
+dogs.sort_values(["weight_kg", "height_cm"], ascending=[True, False])
+
+Subsetting multiple columns:
+dogs[["breed", "height_cm"]]
+
+Subsetting rows:
+dogs["height_cm"] > 50
+
+Subsetting based on multiple conditions:
+is_lab = dogs["breed"] == "Labrador"
+is_brown = dogs["color"] == "Brown"
+dogs[is_lab & is_brown]
+
+& -> and operator, | -> or operator
+
+colors = ["brown", "black", "tan"]
+dogs[dogs["color"].isin(colors)]
+
+dogs["height_m"] = dogs["height_cm"] / 100
+
+Summary statistics methods: .mean(), .median(), .mode(), .min(), .max(), .var(), .std(), .sum()
+dogs["height_cm"].mean()
+
+Cumulative statistics: .cumsum(), .cummin(), .cumprod()
+
+dogs["weight_kg"].cumsum()
+
+df['column'].agg(function) -> .agg() method allow to apply own custom functions to a DataFrame
+
+Dropping duplicate names (according to name column):
+df.drop_duplicates(subset="name")
+
+Dropping duplicate pairs (base duplicate dropping on multiple columns):
+unique_dogs = df.drop_duplicates(subset=["name", "breed"])
+
+# Drop duplicate store/type combinations
+store_types = sales.drop_duplicates(subset=["store", "type"])
+
+# Drop duplicate store/department combinations
+store_depts = sales.drop_duplicates(subset=["store", "department"])
+
+Counting:
+unique_dogs["breed"].value_counts(sort=True, normalize=True) -> sort argument is used to get the breeds with biggest counts on top, normalize argument can be used to turn the counts into proportions of the total
+
+dogs[dogs["color"] == "Black"]["weight_kg"].mean()
+
+.groupby() method -> for grouped summary statistics
+
+Grouped summaries (for each color):
+dogs.groupby("color")["weight_kg"].mean()
+
+Multiple grouped summaries:
+dogs.groupby("color")["weight_kg"].agg([min, max, sum])
+
+Grouping by multiple variables:
+dogs.groupby(["color", "breed"])["weight_kg"].mean()
+
+Many groups, many summaries:
+dogs.groupby(["color", "breed"])[["weight_kg", "height_cm"]].mean()
+
+Pivot tables:
+dogs.pivot_table(values="weight_kg", index="color") -> index is the column you want to group by, by default pivot_table takes the mean value for each group
+
+dogs.pivot_table(values="weight_kg", index="color", aggfunc=np.median)
+
+Multiple statistics:
+dogs.pivot_table(values="weight_kg", index="color", aggfunc=[np.mean, np.median])
+
+Pivot on two variables:
+dogs.groupby(["color", "breed"])["weight_kg"].mean() is equivalent to
+dogs.pivot_table(values="weight_kg", index="color", columns="breed", fill_value=0, margins=True) -> instead of NaN (missing) values, we can have them filled in using fill_value argument
+
+Summing with pivot tables:
+dogs.pivot_table(values="weight_kg", index="color", columns="breed", fill_value=0, margins=True) -> mean weight
+
+Pivot tables are the standard way of aggregating data in spreadsheets. In pandas, pivot tables are essentially just another way of performing grouped calculations. That is, the .pivot_table() method is just an alternative to .groupby().
+
+fill_value argument of .pivot_table() method replaces missing values with a real value (known as imputation).
+margins is a shortcut for when you pivoted by two variables, but also wanted to pivot by each of those variables separately: it gives the row and column totals of the pivot table contents.
+
+dogs.columns -> column names
+dogs.index -> row numbers
+
+Setting a column as the index:
+dogs_ind = dogs.set_index("name")
+
+Removing an index:
+dogs_ind.reset_index()
+
+Dropping an index:
+dogs_ind.reset_index(drop=True)
+
+Indexes make subsetting simpler:
+dogs[dogs["name"].isin(["Bella", "Stella"])]
+
+equivalent to .isin() method above (.loc() method filters on index values):
+dogs_ind.loc[["Bella", "Stella"]]
+
+Index values don't need to be unique:
+dogs_ind2 = dogs.set_index("breed")
+
+Subsetting on duplicated index values:
+dogs_ind2.loc["Labrador"]
+
+Multi-level indexes (hierarchical indexes):
+dogs_ind3 = dogs.set_index(["breed", "color"])
+
+Subset the outer level with a list:
+dogs_ind3.loc[["Labrador", "Chihuahua"]]  -> contains all dogs from both breeds
+
+Subset inner level with a list of tuples:
+dogs_ind3.loc[[("Labrador", "Brown"), ("Chihuahua", "Tan")]]
+
+Sorting by index values:
+dogs_ind3.sort_index()
+
+Controlling sort index:
+dogs_ind3.sort_index(level=["color", "breed"], ascending=[True, False])
+
+Index values are just data, indexes violate tidy data principles (data is stored in tabular form like a DataFrame, each row contains a single observation and each variable is stored in its own column. Indexes violate the last rule since index values don't get their own column.)
+
+Sorting the index before slicing:
+dogs_srt = dogs.set_index(["breed", "color"]).sort_index()
+
+Slicing the outer index level:
+dogs_srt.loc["Chow Chow":"Poodle"]
+
+dogs_srt.loc["Tan":"Grey"] -> empty DataFrame (slicing inner index levels badly)
+
+Slicing the inner index levels correctly (by passing the first and last positions as tuples):
+dogs_srt.loc[("Labrador", "Brown"), ("Schnauzer", "Grey")]
+
+Slicing columns:
+dogs_srt.loc[:, "name":"height_cm"]
+
+Slice twice:
+dogs_srt.loc[("Labrador", "Brown"):("Schnauzer", "Grey"), "name":"height_cm"]
+
+Slicing by partial dates:
+dogs.loc["2014":"2016"]
+
+Slicing DataFrame by row or column number using .iloc() method:
+dogs.iloc[2:5, 1:4]
+
+- You can only slice an index if the index is sorted (using .sort_index()).
+- To slice at the outer level, first and last can be strings.
+- To slice at inner levels, first and last should be tuples.
+- If you pass a single slice to .loc[], it will slice the rows.
+
+# Subset columns from date to avg_temp_c
+print(temperatures_srt.loc[:, "date":"avg_temp_c"])
+
+# Use Boolean conditions to subset temperatures for rows in 2010 and 2011
+temperatures_bool = temperatures[(temperatures["date"] >= "2010-01-01") & (temperatures["date"] <= "2011-12-31")]
+
+.iloc[] -> to specify a subset using the row or column numbers
+
+pivot tables:
+dogs_height_by_breed_vs_color = dog_pack.pivot_table("height_cm", index="breed", columns="color")
+
+Calculating summary stats across columns:
+dogs_height_by_breed_vs_color.mean(axis="columns")
+
+Calculating mean across rows:
+dogs_height_by_bread_vs_color.mean(axis="index")
+
+import matplotlib.pyplot as plt
+dog_pack["height_cm"].hist()  -> x-axis: heights of dogs, y-axis: number of dogs in each height range
+plt.show()
+
+dog_pack["height_cm"].hist(bins=20) -> adjusting number of bars or bins
+
+avg_weight_by_breed = dog_pack.groupby("breed")["weight_kg"].mean()
+
+Bar plots:
+avg_weight_by_breed.plot(kind="bar", title="Mean Weight by Dog Breed")
+plt.show()
+
+Line plots:
+sully.plot(x="date", y="weight_kg", kind="line")
+plt.show()
+
+Rotating x-axis labels on line plots:
+sully.plot(x="date", y="weight_kg", kind="line", rot=45)
+plt.plot()
+
+Scatter plots:
+dog_pack.plot(x="height_cm", y="weight_kg", kind="scatter")
+plt.show()
+
+Layering plots:
+dog_pack[dog_pack["sex"]=="F"]["height_cm"].hist()
+dog_pack[dog_pack["sex"]=="M"]["height_cm"].hist()
+plt.legend(["F", "M"])
+plt.show()
+
+Transparancy:
+dog_pack[dog_pack["sex"]=="F"]["height_cm"].hist(alpha=0.7)
+
+In pandas missing values are indicated as NaN (not a number)
+
+Detecting missing values:
+dogs.isna()
+
+Detecting any missing values:
+dogs.isna().any()
+
+Counting missing values (sum of booleans):
+dogs.isna().sum()
+
+Plotting missing values:
+import matplotlib.pyplot as plt
+dogs.isna().sum().plot(kind="bar")
+plt.show()
+
+Removing missing values (this may not be ideal if you have a lot of missing data, since that means losing a lot of observations):
+dogs.dropna()
+
+Replacing missing values:
+dogs.fillna(0)  -> all NaNs replaced with 0
+
+Creating DataFrames:
+1. from a list of dictionaries (constructed row by row):
+2. from a dictionary of lists (constructed column by column):
+
+List of dictionaries (by row):
+list_of_dicts = [{"name": "Ginger", "breed": "Dachshund", "height_cm": 22, "weight_kg": 10, "date_of_birth": "2019-03-14"},
+{"name": "Scout", "breed": "Dalmatian", "height_cm": 59, "weight_kg": 25, "date_of_birth": "2019-05-09"}]
+new_dogs = pd.DataFrame(list_of_dicts)
+
+Dictionary of lists (by column):
+dict_of_lists = {"name":["Ginger", "Scout], "breed":["Dachshund", "Dalmatian"], "height_cm":[22, 59], "weight_kg":[10, 25], "date_of_birth":["2019-03-14", "2019-05-09"]}
+new_dogs = pd.DataFrame(dict_of_lists)
+
+CSV (comma separated values) designed for DataFrame-like tabular data, most database and spreadsheet programs can use them or create them
+
+CSV to DataFrame:
+import pandas as pd
+new_dogs = pd.read_csv("new_dogs.csv")
+
+DataFrame manipulation:
+new_dogs["bmi"] = new_dogs["weight_kg"] / (new_dogs["height_cm"] / 100) ** 2
+
+DataFrame to CSV:
+new_dogs.to_csv("new_dogs_with_bmi.csv")
+
+Joining Data with pandas
+Streamlined Data Ingestion with pandas
+
+
+
+
+
+
+
+
+
+
+
+

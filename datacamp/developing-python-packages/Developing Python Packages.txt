@@ -1,0 +1,355 @@
+Python packages:
+- to make code easier to reuse
+- to avoid lots of copying and pasting
+- to keep functions up to date
+- to give code to others
+
+Building a full package:
+- file layout
+- import structure
+- making package installable
+- adding licenses and READMEs
+- style and unit tests for a high quality package
+- registering and publishing your package to PyPI
+- using package templates
+
+Script -> a Python file which is run like python myscript.py
+Module -> a Python file inside a package which stores the package code
+library -> either a package, or a collection of packages
+
+Why include documentation -> helps users use your code
+document each function, class, class method
+
+def count_words(filepath, words_list):
+	"""Count the total number of times these words appear.
+	..........................
+	"""
+
+import scipy
+help(scipy.percentile)
+
+pyment can be used to generate docstrings
+
+Documentation templates and style translation:
+pyment -w -o numpydoc textanalysis.py
+
+To access subpackages, you need to import each of them separetely, each time you use them.
+Absolute import:
+from sklearn import preprocessing
+Relative import:
+from . import preprocessing
+
+Importing between sibling modules:
+Absolute import:
+from sklearn.preprocessing.funcs import (max, min)
+Relative import:
+from .funcs import max, min
+
+Importing between modules far apart:
+Absolute import:
+from sklearn.utils import Exception
+Relative import:
+from ..utils import Exception
+
+- from current directory, import module:
+from . import module
+- from one directory up, import module:
+from .. import module
+- from module in current directory, import function:
+from .module import function
+- from subpackage one directory up, from module in that subpackage, import function:
+from ..subpackage.module import function
+
+setup.py -> is used to install the package, contains metadata on the package
+
+from setuptools import setup
+setup(
+	author="James Fulton",
+	description="A complete package for linear regression",
+	name="mysklearn",
+	version="0.1.0",
+	packages=find_packages(include=["mysklearn", "mysklearn.*"]),
+)
+
+Editable installation:
+pip install -e .  -> runs setup.py, . at the end is the package in current directory, -e: editable
+
+Dependencies -> other packages you import inside your package
+
+Adding dependencies to setup.py:
+from setuptools import setup, find_packages
+setup(
+	....
+	install_requires=['pandas', 'scipy', 'matplotlib'],
+)
+
+Controlling dependency version:
+setup(
+	....
+	install_requires[
+		'pandas>=1.0',
+		'scipy==1.1',
+		'matplotlib>=2.2.1,<3'
+	],
+)
+
+Python versions:
+setup(
+	....
+	python_requires='>=2.7, !=3.0.*, !=3.1.*',
+)
+
+Making an environment for developers:
+pip freeze -> show all the package versions you have installed
+
+Save package requirements to a file
+pip freeze > requirements.txt
+
+Install requirements from file:
+pip install -r requirements.txt
+
+License -> important file for code you want to share online, to give others permission to use your code
+
+Open source licenses allow users to use your package, modify your package, distribute versions of your package
+
+README -> front page of your package, displayed on GitHub or PyPI
+
+What to include in a README:
+- title
+- description and features
+- installation
+- usage examples
+- contributing
+- license
+
+README format:
+1. markdown (commonmark) -> contained in README.md file, simpler, used in this course and in the wild
+2. reStructuredText -> contained in README.rst file, more complex, also common in the wild
+
+MANIFEST.in -> lists all the extra files to include in your package distribution
+Contents of MANIFEST.in:
+include LICENSE
+include README.md
+
+Publishing packages:
+PyPI (Python package index) -> pip install packages from here, anyone can upload packages
+
+Distribution package -> a bundled version of your package which is ready to install
+source distribution -> a distribution package which is mostly your source code
+Wheel distribution -> a distribution package which has been processed to make it faster to install
+
+How to build distributions:
+python setup.py sdist bdist_wheel  -> sdist: source distribution, bdist_wheel: wheel distribution, it will also create build and egg-info directories
+
+Upload your distributions to PyPI:
+twine upload dist/*
+
+Upload your distributions to TestPyPI:
+twine upload -r testpypi dist/*
+
+Installing package from PyPI:
+pip install mysklearn
+
+Installing package from TestPyPI:
+pip install --index-url .... --extra-index-url ..... mysklearn
+
+def get_ends(x):
+	"""Get the first last element in a list"""
+	return x[0], x[-1]
+
+Writing tests:
+def get_ends(x):
+	"""Get the first and last element in a list"""
+	return x[0], x[-1]
+
+def test_get_ends():
+	assert get_ends([1,5,39,0]) == (1,0)
+test_get_ends() -> if this function returns the correct function then the test function passes, if something is wrong with get_ends(), then this test function raises an assertion error
+
+You can include multiple assert statements to test your function in different ways.
+
+Running tests with pytest:
+pytest look inside the test directory, looks for all modules like test_modulename.py, inside these modules it will look for all functions that start with test_functionname() and it will run these functions, it runs these functions and shows output.
+
+Testing multiple versions of Python:
+from setuptools import setup, find_packages
+setup(
+	....
+	python_requires='>=2.7'
+)
+
+To test these Python versions you must:
+- install all these Python versions
+- install your package and all dependencies into each Python
+- run pytest
+
+Easier way to test multiple Python versions and most common way is to use tox:
+tox -> designed to run tests with multiple versions of Python
+In order to use tox, you need to create a configuration file (tox.ini) telling tox what to run in each environment and also which Python versions to use.
+tox.ini needs to be placed in the top level of the package, alongside setup.py file
+tox.ini:
+[tox] -> headings are surrounded by square brackets [....]
+envlist = py27, py35, py36, py37 -> to test Python version X.Y add pyXY to envlist parameter
+deps = pytest
+commands = pytest -> commands parameter lists the terminal commands tox will run, like ls, cd, echo, etc.
+
+The versions of Python you test need to be installed already, tox won't install new Python versions.
+
+PEP8 (standard Python style guide) -> covers how variables and functions should be named, and generally how your code should be laid out. Following these conventions makes your code easier for others to understand and use.
+
+When developing code, it can be hard to spot bugs when you are writing it, that's why we use pytest. Similarly, it can be hard to spot every place where you have deviated in style, for this we use flake8.
+flake8 -> to find styling mistakes
+
+Static code checker, reads code but doesn't run:
+flake8 features.py  -> features.py:2:1 F401 'math' imported but unused
+
+adding # noqa comment on the line -> no quality-assurance, now flake8 won't evaluate this line of code, if we include a violation code after noqa, then flake8 will evaluate the line but ignore this particular type of violation.
+
+quadratic_1 = 6 * x**2 + 2*x + 4; # noqa: E222
+
+Ignoring style violations without using comments:
+flake8 --ignore E222 quadratic.py  -> quadratic.py:5:35 E703 statement ends with a semicolon
+flake8 --select F401,F841 features.py  -> 2:1: F401 'math' imported but unused \n 9:5: F841 local variable 'mean_x' is assigned to but never used
+
+Choosing package settings using setup.cfg, create a setup.cfg to store settings:
+setup.cfg:
+[flake8]
+ignore = E302
+exclude = setup.py
+per-file-ignores = example_package/example_package.py: E222
+
+Running flake8 on the whole package:
+flake8
+
+Use the least filtering possible:
+1. # noqa : <code>
+2. # noqa
+3. setup.py -> per-file-ignores
+4. setup.py -> exclude, ignore
+
+Templates -> Python packages have lots of extra files, there is a lot to remember, using templates takes care a lot of this
+
+cookiecutter is a command line tool which creates projects from templates, creates all the additional files your package needs
+
+Using cookiecutter:
+cookiecutter <template-url>
+cookiecutter https://github.com/audreyr/cookiecutter-pypackage
+full_name: ....
+email: ....
+github_username: ....
+project_name: ....
+project_slug: ....
+project_short_description: ....
+pypi_username: ....
+version: ....
+use_pytest: y or n
+use_pypi_deployment_with_travis: y or n
+add_pyup_badge: y or n
+Select command_line_interface:
+1 - Click
+2 - Argparse
+3 - No command-line interface
+Choose from 1, 2, 3 [1]: 3
+create_author_file: y or n
+Select open_source_license:
+1 - MIT license
+2 - BSD license
+3 - ISC license
+4 - Apache Software License 2.0
+5 - GNU General Public License v3
+6 - Not open source
+Choose from 1, 2, 3, 4, 5, 6 [1]: 6
+
+Project slug -> the name used in pip install name
+
+You can manually edit the contents of the README file later.
+
+cookiecutter creates a new directory with your package name, and fills it with all the files we have covered. Each of these files has good default content. It adds MANIFEST.in, README.rst, requirements_dev.txt, setup.cfg, setup.py, tox.ini, AUTHORS.rst, CONTRIBUTING.rst, HISTORY.rst, Makefile.
+Also it adds docs, .github directories, and .editorconfig, .gitignore, .travis.yml files.
+
+CONTRIBUTING.md -> either markdown or reStructured-Text file, invites other developers to work on your package, tells them how to get started
+The purpose of CONTRIBUTING.md file is to tell potential users and developers how they can get involved with your project.
+
+HISTORY.md -> known as history, changelog or release notes (e.g. NumPy release notes), section for each released version, bullet points of the important changes, subsections for improvements to existing functions, new additions, bugs that have been fixed, deprecations (tells users when the package has been changed in a way which might break their code that uses it)
+
+Version number -> increase version number when ready for new release, cannot upload to PyPI if not changed
+The version number in the init file is included for the user, and it is best practice to include this. It allows them to print and use the package version.
+
+bumpversion -> version numbers can be updated simultaneously using bumpversion tool, used from the terminal and will search through your package and increase the version number in appropriate places
+bumpversion major
+bumpversion minor
+bumpversion patch
+
+Makefiles -> speed up your development
+classifiers -> help people find your package
+
+Classifiers -> metadata for your package, helps users find your package on PyPI, you should include: package status, your intended audience, license type, language, versions of Python supported
+
+setup.py:
+setup(
+	....
+	classifiers = [
+		'Development Status :: 2 - Pre-Alpha',
+		'Intended Audience :: Developers',
+		'License :: OSI Approved :: MIT License',
+		'Natural Language :: English',
+		'Programming Language :: Python :: 3',
+		'Programming Language :: Python :: 3.6',
+		'Programming Language :: Python :: 3.7',
+		'Programming Language :: Python :: 3.8'
+	],
+	....
+)
+
+Lots more classifiers exist: https://pypi.org/classifiers
+
+Makefile -> kind of Python modules, you can write functions inside them but these functions are used from the terminal. Inside the Makefile, cookiecutter has added a bunch of functions like dist function (runs setup.py to build source and wheel distributions for your package, python3 setup.py sdist bdist_wheel). There is also clean-build function (remove build artifacts, deletes the old distribution files so you can safely create new ones a new release, rm -rf build/, rm -rf dist/, rm -rf .eggs/), there is also test function (runs pytest), release function (package and upload a release to PyPI, twine upload dist/*)
+make <function-name>
+
+make dist
+make clean-build
+make test
+make release
+
+To build new source and wheel distributions:
+make dist
+
+Makefile summary (lists the functions in the makefile as well as what they do):
+make help
+
+clean -> remove all build, test, coverage and Python artifacts
+clean-build -> remove build artifacts
+clean-pyc -> remove Python file artifacts
+clean-test -> remove test and coverage artifacts
+lint -> check style with flake8
+test -> run tests quickly with the default Python
+test-all -> run tests on every Python version with tox
+release -> package and upload a release
+dist -> builds source and wheel package
+install -> install the package to the active Python's site-packages
+
+
+Recap:
+- modules vs subpackages vs packages
+- package structure and __init__.py
+- absolute and relative imports
+- documentation with pyment
+- code style with flake8
+- making your package installable with setup.py
+- dependencies with install_requires and requirements.txt
+- supporting files like LICENSE, README.md, CONTRIBUTING.md and HISTORY.md
+- building and uploading distributions to PyPI with twine
+- testing with pytest and tox
+- using package templates with cookiecutter
+- efficient package care with Makefile
+
+
+
+
+
+
+
+
+
+
+

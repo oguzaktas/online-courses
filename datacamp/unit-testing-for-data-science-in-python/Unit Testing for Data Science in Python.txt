@@ -1,0 +1,531 @@
+Unit testing saves a lot of development and maintenance time, improving documentation, increasing end-user trust and reducing downtime of productive systems.
+
+lifecycle of a function:
+implementation -> test -> if fail: bugfix and test again, if pass: accepted implementation -> feature request or refactoring, bug found
+Every time we modify the function, either to fix bugs or to implement new features, we have to test it.
+
+Unit tests automate the repetitive testing process and saves time.
+
+How frequently is a function tested -> A function is tested after the first implementation and then any time the function is modified, which happens mainly when new bugs are found, new features are implemented or the code is refactored.
+
+Python unit testing libraries: pytest, unittest, nosetests, doctest
+pytest -> has all essential features, easiest to use, most popular
+
+Writing a simple unit test using pytest:
+Step 1: create a file (test_row_to_list.py) -> test_ indicate unit tests inside (naming convention), also called test modules
+Step 2: in the test module (test_row_to_list.py), import pytest and row_to_list
+Step 3: unit tests are Python functions: define test_for_clean_row() function
+Step 4: assertion
+Step 5: running unit tests (pytest test_row_to_list.py)
+
+Every test must contain an assert statement
+
+def test_for_clean_row():
+	assert boolean_expression  -> if the assertion is true it gives blank output, if the assertion is false it gives AssertionError
+
+def test_for_clean_row():
+	assert row_to_list(".........") == [..........]
+
+def test_for_missing_area():
+	assert row_to_list(".........") is None
+
+Checking for None values (we don't use var == None, instead we use var is None):
+assert var is None
+
+Running tests in IPython console: !pytest test_row_to_list.py
+
+Unit test results:
+F (failure) -> when: an exception is raised when running unit test (e.g. NameError), action: fix the function or unit test
+. (passed) -> when: no exception raised when running unit test, action: everything is fine
+
+If you get an AssertionError, this means the function has a bug and you should fix it. If you get another exception, e.g. NameError, this means that something else is wrong with the unit test code and you should fix it so that the assert statement can actually run.
+
+Unit tests serve as documentation, provide reduced downtime
+
+codecov -> shows how much of the code base is unit tested
+Travis CI -> shows whether the tests are passing
+
+If we run productive systems that many people depend upon, we must write unit tests and setup CI.
+
+Data module (creates a clean data file from raw data), feature module (compute features from the clean data), models module (output a model)
+
+- unit: small, independent piece of code, could be Python function or class
+- Integration tests check if multiple units work well together when they are connected, and not just independently.
+- End-to-end tests check the whole software at once, this start from one end which is the unprocessed data file, goes through all the units till the other end, and checks whether we get the correct model.
+
+Benefits of unit testing
+1. Time savings, leading to faster development of new features.
+2. Improved documentation, which will help new colleagues understand the code base better.
+3. More user trust in the software product.
+4. Better user experience due to reduced downtime.
+
+The optional message argument of assert statement:
+assert boolean_expression, message
+
+assert 1 == 2, "One is not equal to two!"
+
+The message (second argument) is only printed when the assert statement raises an AssertionError and it should contain information about why the AssertionError was raised. If the assert statement passes, nothing is printed.
+
+Adding a message to a unit test:
+test_row_to_list.py:
+import pytest
+....
+def test_for_missing_area_with_message():
+	actual = row_to_list(.....)
+	expected = None
+	message = .........
+	assert actual is expected, message
+
+It is recommended to include a message with assert statements because it is much easier to read and understand than the automatic output. In the message, print values of any variable that is relevant to debugging.
+
+Beware of float return values:
+0.1 + 0.1 + 0.1 == 0.3  -> False
+0.1 + 0.1 + 0.1  -> 0.300000000000004
+We should not the usual way to compare floats in assert statement, instead we should use pytest.approx() method to wrap expected return value.
+assert 0.1 + 0.1 + 0.1 == pytest.approx(0.3)  -> this ensures digits far on the right are ignored and we can compare floats safely.
+pytest.approx() also works for NumPy arrays containing floats:
+assert np.array([0.1 + 0.1, 0.1 + 0.1 + 0.1]) == pytest.approx(np.array([0.2, 0.3]))
+
+Unit tests can have more than 1 assert statement. Multiple assertion in 1 unit test:
+def test_on_string_with_one_comma():
+	return_value = convert_to_int("2,081")
+	assert isinstance(return_value, int)  -> instance takes the return value as first argument and expected type of the return value as second argument, which is int in this case
+	assert return_value == 2081
+
+The modified test will pass only if both assertions pass, it will fail if any of them raises an AssertionError
+
+Testing for exceptions instead of return values
+Unit testing exceptions, test if split_into_training_and_testing_set() raises ValueError with 1-dimensional argument:
+def test_valueerror_on_one_dimensional_argument():
+	example_argument = np.array([.......])
+	with pytest.raises(ValueError):
+		# <--- does nothing on entering the context
+		print('This is part of the context')
+		# <--- if context raised ValueError, silence it
+		# <--- if context did not raise ValueError, raise an exception
+		
+Any code that is inside the with statement is known as the context, with statement takes a single argument (context manager), context manager runs some code before entering and exiting the context:
+with context_manager:
+	# <--- runs code on entering context
+	print('This is part of the context')  # any code inside is the context
+	# <--- runs code on exiting context
+
+with pytest.raises(ValueError):
+	raise ValueError
+
+with pytest.raises(ValueError):
+	pass
+
+Unit testing exceptions:
+def test_valueerror_on_one_dimensional_argument():
+	example_argument = np.array([.......])
+	with pytest.raises(ValueError):
+		split_into_training_and_testing_sets(example_argument)
+If function raises expected ValueError, test will pass. If function is buggy and does not raise ValueError, test will fail.
+
+
+with pytest.raises(ValueError) as exception_info  -> store the exception
+
+assert exception_info.match("...............")
+
+Test argument types: bad arguments, special arguments, normal arguments
+If we have tested for all of these argument types, then our function can be declared well tested.
+
+Bad arguments -> when passed bad arguments, function raises an exception instead of returning a value, for example empty training or testing arrays
+Special arguments -> 1. boundary values, 2. for some argument values, which the function uses special logic to produce the return value
+It is recommended to test for 2 or 3 normal arguments
+
+Not all functions have bad or special arguments, in this case simply ignore these class of arguments.
+
+Writing unit tests if often skipped.
+Usual priorities in the industry:
+1. feature development (for fast results)
+2. unit tests
+
+TDD (test-driven development) tries to ensure that unit tests do get written.
+Write unit tests before implementation -> unit tests cannot be deprioritized, time for writing unit tests factored in implementation time, requirements are clearer and implementation easier
+
+TDD:
+Step 1: write unit tests and fix requirements
+Step 2: run tests and watch it fail (!pytest test_convert_to_int.py)
+Step 3: implement function and run tests again
+
+In TDD, the first run of the tests always fails with a NameError or ImportError because the function does not exist yet.
+
+Project structure:
+src/ # All application code lives here
+|-- data/ # Package for data preprocessing
+| |-- __init__.py
+| |-- preprocessing_helpers.py # Contains row_to_list(), convert_to_int()
+|-- features/ # Package for feature generation from preprocessed data
+| |-- __init__.py
+| |-- as_numpy.py # Contains get_data_as_numpy_array()
+|-- models/ # Package for training/testing linear regression model
+| |-- __init__.py
+| |-- train.py # Contains split_into_training_and_testing_sets()
+tests/ # Test suite: all tests live here
+|-- data/
+| |-- __init__.py
+| |-- test_preprocessing_helpers.py # Contains TestRowToList, TestConvertToInt
+|-- features/
+| |-- __init__.py
+| |-- test_as_numpy.py # Contains TestGetDataAsNumpyArray
+|-- models/
+|-- __init__.py
+|-- test_train.py # Contains TestSplitIntoTrainingAndTestingSets
+
+Test class is a container for a single unit's tests
+
+test module for test_preprocessing_helpers.py:
+import pytest
+from data.preprocessing_helpers import row_to_list, convert_to_int
+
+class TestRowToList(object): # Always put the argument object
+	def test_on_no_tab_no_missing_value(self): # Always put the argument self
+	...
+
+	def test_on_two_tabs_no_missing_value(self): # Always put the argument self
+	...
+
+Running all tests:
+cd tests
+pytest  -> automatically discovers tests by recursing into the subtree of the working directory, identifies all files names starting with test_ (test module), within test modules it identifies classes with names starting with Test as test classes, within each test class it identifies all functions names starting with test_ as unit tests
+
+Running tests in a test module:
+pytest data/text_preprocessing_helpers.py
+
+During automatic test discovery, pytest assigns a node ID to every test class and unit test that it encounters. The Node ID of a test class is the path to the test module followed by the name of the test class, separated by 2 colons.
+
+Node ID of a test class -> <path to test module>::<test class name>
+Node ID of an unit test -> <path to test module>::<test class name>::<unit test name>
+
+Running tests using node ID for test class TestRowToList:
+pytest data/text_preprocessing_helpers.py::TestRowToList
+
+Running tests using Node ID for unit test test_on_one_tab_with_missing_value(), it only runs a single test:
+pytest data/text_preprocessing_helpers.py::TestRowToList::test_on_one_tab_with_missing_value
+
+Running tests using keyword expressions:
+pytest -k "TestSplitTrainingAndTestingSets"
+pytest -k "TestSplit"
+pytest -k "TestSplit and not test_on_one_row" -> execute all tests in TestSplitTrainingAndTestingSets except the unit test test_on_one_row(), which only leaves one test to run
+
+The -k flag is used for selecting a subset of tests whose node ID matches a particular pattern. It does not stop test execution on the first failure.
+
+
+"Are all tests passing" without wasting time and resources, what is the correct command to run all tests till the first failure is encountered? -> pytest -x
+
+pytest or pytest -x command is often used in CI servers. It can also be useful if there is a major update to the code base, which changes many application modules at the same time. Running all tests is the only way to check if anything was broken due to the update.
+
+The -k flag is really useful, because it helps you select tests and test classes by typing only a unique part of its name. This saves a lot of typing, and you must admit that TestSplitIntoTrainingAndTestingSets is a horrendously long name! In your projects, you will often run tests with the node IDs and the -k flag because you are often not interested in running all tests, but only a subset depending on the functions you are currently working on.
+
+class TestConvertToInt(object):
+	@pytest.mark.skipif(boolean_expression)
+	def test_with_no_comma(self):
+		"""Only runs on Python 2.7 or lower"""
+		test_argument = "756"
+		expected = 756
+		actual = convert_to_int(test_argument)
+		message = unicode("Expected: 2081, Actual: {0}".format(actual))
+		assert actual == expected, message
+
+if boolean_expression is True, then test is skipped.
+
+skipif when Python version is higher than 2.7:
+@pytest.mark.skipif(sys.version_info > (2,7), reason="requires Python 2.7")
+
+Showing reason in the test result report:
+pytest -r
+
+The -r option:
+pytest -r[set_of_characters]
+
+Showing reason for skipping:
+pytest -rs
+
+Optional reason argument to xfail:
+@pytest.mark.xfail(reason="using TDD, train_model() is not implemented")
+
+Showing reason for xfail:
+pytest -rx
+
+Showing reason for both skipped and xfail:
+pytest -rsx
+
+What is the command that would only show the reason for expected failures in the test result report? -> !pytest -rx
+
+What is the command that would only show the reason for skipped tests in the test result report? -> !pytest -rs
+
+What is the command that would show the reason for both skipped tests and tests that are expected to fail in the test result report? -> !pytest -rsx
+
+Code coverage (codecov) and build status (Travis CI)
+
+Build status badge -> uses a CI server, which runs all tests automatically whenever we push a commit to GitHub. It shows whether tests are currently passing or failing. To an end user, passing indicates a stable code base while failing indicates instability. Travis CI is used as CI server.
+
+Step 1: create a configuration file (.travis.yml)
+.travis.yml:
+language: python
+python:
+  - "3.6"
+install:
+  - pip install -e .
+script:
+  - pytest tests
+
+Step 2: push the file to GitHub
+git add .travis.yml
+git push origin master
+
+Step 3: install the Travis CI app
+
+Code coverage badge (Codecov) -> indicates the percentage of our application code that gets run when we run the test suite.
+
+code coverage = (num lines of application code that ran during testing / total num lines of application code) * 100
+High percentages indicate well tested code base.
+
+Step 1: modify the Travis CI configuration file:
+.travis.yml:
+language: python
+python:
+  - "3.6"
+install:
+  - pip install -e .
+  - pip install pytest-cov codecov   # install packages for code coverage report (they are necessary to generate and upload coverage reports)
+script:
+  - pytest --cov=src tests   # point to the source directory
+after_success:
+  - codecov   # uploads report to codecov.io
+
+Step 2: install Codecov in GitHub marketplace (then commits lead to coverage report at codecov.io after Travis CI completes the build)
+Step 3: showing the badge in GitHub
+
+build failing badge of Travis CI is indicative of bugs, the maintainer of any package should strive to keep this badge green ("passing").
+
+preprocessing function:
+def preprocess(raw_data_file_path, clean_data_file_path):
+	....
+
+preprocess() needs a raw data file in the environment to run.
+
+Setup and teardown:
+Step 1: setup
+def test_on_raw_data():
+	# setup: create the raw data file
+setup brings the environment to a state where testing can begin.
+
+Step 2: assert
+def test_on_raw_data():
+	# setup: create the raw data file
+	preprocess(raw_data_file_path, clean_data_file_path)
+	with open(clean_data_file_path) as f:
+		lines = f.readlines()
+	first_line = lines[0]
+	assert first_line == "1801\t201411\n"
+	second_line = lines[1]
+	assert second_line == "2002\t333209\n"
+	# teardown: remove raw and clean data file
+
+Teardown brings environment to initial state.
+
+Old workflow:
+assert
+New workflow:
+setup -> assert -> teardown
+
+Fixture:
+import pytest
+
+@pytest.fixture
+def my_fixture():
+	# Do setup here
+	return data
+
+def test_something(my_fixture):
+	...
+	data = my_fixture
+	...
+
+
+Fixture:
+@pytest.fixture
+def raw_and_clean_data_file():
+	raw_data_file_path = "raw.txt"
+	clean_data_file_path = "clean.txt"
+	with open(raw_data_file_path, "w") as f:
+		f.write(.......)
+	yield raw_data_file_path, clean_data_file_path
+	os.remove(raw_data_file_path)
+	os.remove(clean_data_file_path)
+
+Test:
+import os
+import pytest
+def test_on_raw_data(raw_and_clean_data_file):
+	raw_path, clean_path = raw_and_clean_data_file
+	preprocess(raw_path, clean_path)
+	with open(clean_data_file_path) as f:
+		lines = f.readlines()
+	first_line = lines[0]
+	assert first_line == .......
+	second_line = lines[1]
+	assert second_line == .......
+
+built-in tmpdir fixture -> useful when dealing files, this fixture creates a temporary directory during setup and deletes the temporary directory during teardown
+
+tmpdir and fixture chaining (results in the setup of tmpdir to be called first, followed by the setup of our fixture):
+@pytest.fixture
+def raw_and_clean_data_file(tmpdir):
+	raw_data_file_path = tmpdir.join("raw.txt")
+	clean_data_file_path = tmpdir.join("clean.txt")
+	..........
+	# no teardown code necessary (because teardown of tmpdir will delete all files in the temporary directory when test ends)
+
+setup of tmpdir() -> setup of raw_and_clean_data_file() -> test -> teardown of raw_and_clean_data_file() -> teardown of tmpdir()
+
+tmpdir() argument supports all os.path commands such as join, we use join function of tmpdir to create the raw and clean data file inside the temporary directory
+
+raw -> row_to_list() -> convert_to_int() -> clean
+pytest -k "TestPreprocess"
+
+Test result depends on dependencies, test result should indicate bugs in function under test i.e. preprocess(), not dependencies e.g. row_to_list() or convert_to_int()
+
+Mocking -> allow us to test a function independently of its dependencies
+pytest-mock -> install using pip install pytest-mock
+unittest.mock -> Python standard library package
+
+The basic idea of mocking is to replace potentially buggy dependencies such as row_to_list() with the object unittest.mock.MagicMock(), but only during testing. This replacement is done using mocker fixture
+
+def test_on_raw_data(raw_and_clean_data_file, mocker,):
+	raw_path, clean_path = raw_and_clean_data_file
+	row_to_list_mock = mocker.patch(....)
+
+mocker.patch("data.preprocessing_helpers.row_to_list")  -> unittest.mock.MagicMock()
+
+Making MagicMock() bug-free:
+During the test, row_to_list can be programmed to behave like a bug-free replacement of row_to_list
+def row_to_list_bug_free(row):
+	return_values = {.......}
+	return return_values[row]
+
+def test_on_raw_data(raw_and_clean_data_file, mocker,):
+	raw_path, clean_path = raw_and_clean_data_file
+	row_to_list_mock = mocker.patch("data.preprocessing_helpers.row_to_list", side_effect=row_to_list_bug_free)
+	preprocess(raw_path, clean_path)
+
+row_to_list_mock.call_args_list -> returns a list of arguments that the mock was called with
+
+Testing models:
+from data.preprocessing_helpers import preprocess
+from features.as_numpy import get_data_as_numpy_array
+from models.train import (
+	split_into_training_and_testing_sets
+)
+
+preprocess("data/raw/housing_data.txt",
+	     "data/clean/clean_housing_data.txt"
+)
+
+data = get_data_as_numpy_array("data/clean/clean_housing_data.txt", 2)
+
+training_set, testing_set = (
+	split_into_training_and_testing_sets(data)
+)
+ 
+split_into_training_and_testing_sets(data)
+
+from scipy.stats import linregress
+def train_model(training_set):
+	slope, intercept, _, _, _ = linregress(training_set[:, 0], training_set[:, 1])
+	return slope, intercept
+
+Cannot test train_model() without knowing expected return values.
+
+Trick 1: use dataset where return value is known
+
+import pytest
+import numpy as np
+from models.train import train_model
+
+def test_on_linear_data():
+	test_argument = np.array([[1.0, 3.0],
+					 [2.0, 5.0],
+					 [3.0, 7.0]
+					 ]
+					)
+	expected_slope = 2.0
+	expected_intercept = 1.0
+	slope, intercept = train_model(test_argument)
+	assert slope == pytest.approx(expected_slope)
+	assert intercept == pytest.approx(
+		expected_intercept
+	)
+
+Trick 2: use inequalities
+import numpy as np
+from models.train import train_model
+def test_on_positively_correlated_data():
+	test_argument = np.array([[1.0, 4.0], [2.0, 4.0],
+					 [3.0, 9.0], [4.0, 10.0],
+					 [5.0, 7.0], [6.0, 13.0],
+					 ]
+					)
+	slope, intercept = train_model(test_argument)
+	assert slope > 0
+
+
+def model_test(testing_set, slope, intercept):   -> returns a quantity r^2, indicates how well the model performs on unseen data, usually 0 <= r^2 <= 1, r^2=1 indicates perfect fit, r^2=0 indicates no fit, complicated to compute r^2 manually
+	"""Return r^2 of fit"""
+
+One-time baseline generation:
+decide on test arguments -> call plotting function on test arguments -> convert figure() to PNG image -> image looks OK? (if no -> fix plotting function and call plotting function on test arguments again) --yes--> store image as baseline image -> .png
+
+Testing:
+call plotting function on test arguments -> convert figure() to PNG image -> .png -> compare png images
+
+Since images generated on different operating systems look slightly different, we need to use a pytest-mpl plugin for image comparisons. This library knows how to ignore OS related differences and makes it easy to generate baseline images.
+pip install pytest-mpl
+
+An example test:
+import pytest
+import numpy as np
+from visualization import get_plot_for_best_fit_line
+
+@pytest.mark.mpl_image_compare	# under the hood baseline generation and comparison
+def test_plot_for_linear_data():
+	slope = 2.0
+	intercept = 1.0
+	x_array = np.array([1.0, 2.0, 3.0])	  # linear data set
+	y_array = np.array([3.0, 5.0, 7.0])
+	title = "Test plot for linear data"
+	return get_plot_for_best_fit_line(slope, intercept, x_array, y_array, title)
+
+tests/visualization
+|-- __init__.py
+|-- test_plots.py	 # test module
+|-- baseline  # contains baselines
+    |-- test_plot_for_linear_data.png
+
+!pytest -k "test_plot_for_linear_data" --mpl-generate-path visualization/baseline  -> generate baseline image
+
+Run the test:
+!pytest -k "test_plot_for_linear_data" --mpl
+
+Testing saves time and effort.
+
+pytest -> testing return values and exceptions, running tests and reading the test result report
+best practices -> well tested function using normal, special and bad arguments. TDD where tests get written before implementation, test organization and management
+
+Advanced skills -> setup and teardown with fixtures, mocking, sanity tests for data science models, plot testing
+
+
+
+
+
+
+
+
+
+
+
+
+

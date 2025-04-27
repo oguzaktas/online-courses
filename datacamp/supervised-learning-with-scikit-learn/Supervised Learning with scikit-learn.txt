@@ -1,0 +1,341 @@
+Machine learning -> computers are given the ability to learn to make decisions from data, without being explicitly programmed
+
+Unsupervised learning -> process of uncovering hidden patterns and structures from unlabeled data, e.g. clustering
+
+classification -> target variable consists of categories
+regression -> target variable is continuous
+
+feature = predictor variable = independent variable
+target variable = dependent variable = response variable
+
+Requirements: no missing values, data in numeric format, data stored in pandas DataFrame or NumPy array
+
+perform explaratory data analysis first -> various pandas methods for descriptive statistics along with appropriate data visualizations are useful in this step
+
+scikit-learn syntax:
+from sklearn.module import Model
+model = Model()
+model.fit(X, y) # X is an array of features, y is an array of target variable values
+predictions = model.predict(X_new)
+
+Classifying labels of unseen data:
+1. Build a model
+2. Model learns from the labeled data we pass to it
+3. Pass unlabeled data to the model as input
+4. Model predicts the labels of the unseen data
+
+labeled data = training data
+
+k-nearest neighbors (knn) -> used for classification problems, predict the label of a data point by looking at the k closest data points, taking a majority vote
+
+from sklearn.neighbors import KNeighborsClassifier
+X = churn_df[["total_day_charge", "total_eve_charge"]].values
+y = churn_df["churn"].values
+knn = KNeighborsClassifier(n_neighbors=15)
+knn.fit(X, y)
+predictions = knn.predict(X_test)
+
+accuracy = correct predictions / total observations
+
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=21, stratify=y)
+knn = KNeighborsClassifier(n_neighbors=6)
+knn.fit(X_train, y_train)
+print(knn.score(X_test, y_test))
+
+larger k = less complex model (simpler model) -> can cause underfitting
+smaller k = more complex model -> can lead to overfitting
+
+train_accuracies = {}
+test_accuracies = {}
+neighbors = np.arange(1, 26)
+for neighbor in neighbors:
+	knn = KNeighborsClassifier(n_neighbors=neighbor)
+	knn.fit(X_train, y_train)
+	train_accuracies[neighbor] = knn.score(X_train, y_train)
+	test_accuracies[neighbor] = knn.score(X_test, y_test)
+
+
+X = diabetes_df.drop("glucose", axis=1).values
+y = diabetes_df["glucose"].values
+
+Making predictions from a single feature:
+X_bmi = X[:, 3]
+X_bmi = X_bmi.reshape(-1, 1)
+plt.scatter(X_bmi, y)
+
+from sklearn.linear_model import LinearRegression
+reg = LinearRegression()
+reg.fit(X_bmi, y)
+predictions = reg.predict(X_bmi)
+plt.scatter(X_bmi, y)
+plt.plot(X_bmi, predictions)
+
+Regression mechanics -> y=ax+b, simple linear regression uses 1 feature, y=target, x=single feature, a and b -> parameters/coefficients of the model (slope, intercept)
+
+How do we choose a and b? -> define an error function for any given line, choose the line that minimizes the error function
+
+error function = loss function = cost function
+
+ordinary least squares (OLS)
+
+R-squared -> default evaluation metric for regression, quantifies the variance in target values explained by the features, values range from 0 to 1
+
+reg_all.score(X_test, y_test)
+
+mean squared error and root mean squared error
+MSE is measured in target units, squared
+RMSE = sqrt(MSE)
+
+from sklearn.metrics import mean_squared_error
+mean_squared_error(y_test, y_pred, squared=False)
+
+Cross-validation -> model performance is dependent on the way we split up the data, not representative of the model's ability to generalize to unseen data. solution: cross-validation
+Splitting the dataset into 5 groups (folds), then we set aside the first fold as a test set, fit our model on the remaining 4 folds, predict on our test set, and compute the metric of interest such as r-squared. Next, we set aside the 2nd fold as our test set, fit on remaining data, predict on the test set, and compute the metric of interest. Then similarly for the 3rd, 4th, and 5th folds. As a result we get 5 values of r-squared.
+
+more folds = more computationally expensive
+
+from sklearn.model_selection import cross_val_score, KFold
+kf = KFold(n_splits=6, shuffle=True, random_state=42)
+reg = LinearRegression()
+cv_results = cross_val_score(reg, X, y, cv=kf) -> default score is r-squared
+
+np.quantile -> to quantify 95% confidence interval
+
+np.quantile(cv_results, [0.025, 0.975]) -> [0.025, 0.975] list contains the upper and lower limits of our interval as decimals
+
+Regularization -> to reduce overfitting, penalize large coefficients
+
+Linear regression minimizes a loss function, it chooses a coefficient alpha for each feature variable + b, large coefficients can lead to overfitting
+
+Ridge regression -> loss function = OLS (ordinary least squares) loss function + squared value of each coefficient * alpha
+Ridge penalizes large positive or negative coefficients. Picking alpha hyperparameter for Ridge regression is similar to picking k in kNN. alpha controls model complexity.
+
+alpha = 0 = OLS (ordinary least squares) -> large coefficients are not penalized, can lead to overfitting
+
+from sklearn.linear_model import Ridge
+scores = []
+for alpha in [0.1, 1.0, 10.0, 100.0, 1000.0]:
+	ridge = Ridge(alpha=alpha)
+	ridge.fit(X_train, y_train)
+	y_pred = ridge.predict(X_test)
+	scores.append(ridge.score(X_test, y_test))
+print(scores)
+
+Lasso regression -> loss function = OLS (ordinary least squares) + absolute value of each coefficient * alpha
+
+from sklearn.linear_model import Lasso
+scores = []
+for alpha in [0.01, 1.0, 10.0, 20.0, 50.0]:
+	lasso = Lasso(alpha=alpha)
+	lasso.fit(X_train, y_train)
+	y_pred = lasso.predict(X_test)
+	scores.append(lasso.score(X_test, y_test))
+print(scores)
+
+Lasso can select important features of a dataset, shrinks the coefficients of less important features to 0, features not shrunk to 0 are selected by Lasso
+
+from sklearn.linear_model import Lasso
+X = diabetes_df.drop("glucose", axis=1).values
+y = diabetes_df["glucose"].values
+names = diabetes_df.drop("glucose", axis=1).columns
+lasso = Lasso(alpha=0.1)
+lasso_coef = lasso.fit(X, y).coef_
+plt.bar(names, lasso_coef)
+plt.xticks(rotation=45)
+plt.show()
+
+class imbalance -> uneven frequency of classes
+
+precision = true positives / (true positives + false positives)
+high precision -> lower false positive rate
+recall (sensitivity) = true positives / (true positives + false negatives)
+high recall -> lower false negative rate
+f1-score = (2 * precision * recall) / (precision + recall)
+
+from sklearn.metrics import classification_report, confusion_matrix
+knn = KNeighborsClassifier(n_neighbors=7)
+X_train, y_train, X_test, y_test = train_test_split(X, y, test_size=0.4, random_state=42)
+knn.fit(X_train, y_train)
+y_pred = knn.predict(X_test)
+print(confusion_matrix(y_test, y_pred))
+print(classification_report(y_test, y_pred))  -> includes precision, recall, f1-score, support (the number of instances for each class within the true labels)
+
+- a model predicting the presence of cancer as the positive class -> recall
+- a classifier predicting the positive class of a computer program containing malware -> recall, f1-score
+- a model predicting if a customer is a high-value lead for a sales team with limited capacity -> precision (the model should return the highest proportion of true positives compared to all predicted positives, thus minimizing wasted effort)
+
+Logistic regression is used for classification problems, calculates the probability p that an observation belongs to a binary class. if p > 0.5 the data is labeled 1, if p < 0.5 the data is labeled 0 (no diabetes)
+
+from sklearn.linear_model import LogisticRegression
+logreg = LogisticRegression()
+X_train, y_train, X_test, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+logreg.fit(X_train, y_train)
+y_pred = logreg.predict(X_test)
+
+Predicting probabilities of each instance belonging to a class:
+y_pred_probs = logreg.predict_proba(X_test)[:, 1]  -> positive class probabilities
+
+by default, logistic regression threshold = 0.5, not specific to logistic regression, kNN classifiers also have thresholds
+
+ROC curve: x-axis: false positive rate, y-axis: true positive rate
+
+from sklearn.metrics import roc_curve
+fpr, tpr, thresholds = roc_curve(y_test, y_pred_probs)
+plt.plot(fpr, tpr)
+
+AUC: area under ROC curve
+
+from sklearn.metrics import roc_auc_curve
+print(roc_auc_score(y_test, y_pred_probs))
+
+predict_proba -> used to predict probabilities of test features belonging to the positive class
+
+Hyperparameter tuning:
+- Ridge/Lasso regression: choosing alpha
+- kNN: choosing n_neighbors
+
+It is essential to use cross-validation to avoid overfitting to the test set, we can still split the data and perform cross-validation on the training set, withold the test set for final evaluation
+
+from sklearn.model_selection import GridSearchCV
+kf = KFold(n_splits=5, shuffle=True, random_state=42)
+param_grid = {"alpha": np.arange(0.0001, 1, 10), "solver": ["sag", "lsqr"]}
+ridge = Ridge()
+ridge_cv = GridSearchCV(ridge, param_grid, cv=kf)
+ridge_cv.fit(X_train, y_train)
+print(ridge_cv.best_params_, ridge_cv.best_score_)
+
+In grid search, the number of fits is equal to number of hyperparameters * number of values * number of folds. Therefore, it doesn't scale well.
+
+from sklearn.model_selection import RandomizedSearchCV
+kf = KFold(n_splits=5, shuffle=True, random_state=42)
+param_grid = {"alpha": np.arange(0.0001, 1, 10), "solver": ["sag", "lsqr"]}
+ridge = Ridge()
+ridge_cv = RandomizedSearchCV(ridge, param_grid, cv=kf, n_iter=2)
+ridge_cv.fit(X_train, y_train)
+
+evaluating on the test set:
+test_score = ridge_cv.score(X_test, y_test)
+print(test_score)
+
+scikit-learn requires numeric data with no missing values, with real-world data we need to preprocess our data first
+
+Dealing with categorical features -> we need to convert them into numeric values, convert to binary features called dummy variables (0: observation was not that category, 1: observation was that category)
+
+To create dummy variables we can use scikit-learn's OneHotEncoder() or pandas' get_dummies()
+
+Encoding dummy variables:
+import pandas as pd
+music_df = pd.read_csv('music.csv')
+music_dummies = pd.get_dummies(music_df["genre"], drop_first=True)
+print(music_dummies.head())
+music_dummies = pd.concat([music_df, music_dummies], axis=1)
+music_dummies = music_dummies.drop("genre", axis=1)
+
+
+from sklearn.model_selection import cross_val_score, KFold
+from sklearn.linear_model import LinearRegression
+X = music_dummies.drop("popularity", axis=1).values
+y = music_dummies["popularity"].values
+X_train, y_train, X_test, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+kf = KFold(n_splits=5, shuffle=True, random_state=42)
+linreg = LinearRegression()
+linreg_cv = cross_val_score(linreg, X_train, y_train, cv=kf, scoring="neg_mean_squared_error")
+print(np.sqrt(-linreg_cv))  -> RMSE
+
+Missing data -> can occur because there may have been no observation, the data might be corrupt
+
+Dropping missing data:
+music_df = music_df.dropna(subset=["genre", "popularity", "loudness", "liveness", "tempo"])
+print(music_df.isna().sum().sort_values())
+
+imputing values (common to use the mean, can also use the median or another value, for categorical values we typically use the mode), we must split our data first to avoid data leakage:
+
+from sklearn.impute import SimpleImputer
+X_cat = music_df["genre"].values.reshape(-1, 1)
+X_num = music_df.drop(["genre", "popularity"], axis=1).values
+y = music_df["popularity"].values
+X_train_cat, X_test_cat, y_train, y_test = train_test_split(X_cat, y, test_size=0.2, random_state=12)
+X_train_num, X_test_num, y_train, y_test = train_test_split(X_num, y, test_size=0.2, random_state=12)
+imp_cat = SimpleImputer(strategy="most_frequent")
+X_train_cat = imp_cat.fit_transform(X_train_cat)
+X_test_cat = imp_cat.transform(X_test_cat)
+imp_num = SimpleImputer()
+X_train_num = imp_num.fit_transform(X_train_num)
+X_test_num = imp_num.transform(X_test_num)
+X_train = np.append(X_train_num, X_train_cat, axis=1)
+X_test = np.append(X_test_num, X_test_cat, axis=1)
+
+pipeline -> an object used to run a series of transformations and build a model in a single workflow
+
+Imputing within a pipeline:
+from sklearn.pipeline import Pipeline
+music_df = music_df.dropna(subset=["genre", "popularity", "loudness", "liveness", "tempo"])
+music_df["genre"] = np.where(music_df["genre"] == "Rock", 1, 0)
+X = music_df.drop("genre", axis=1).values
+y = music_df["genre"].values
+steps = [("imputation", SimpleImputer()), ("logistic_regression", LogisticRegression())]
+pipeline = Pipeline(steps)
+X_train, y_train, X_test, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+pipeline.fit(X_train, y_train)
+pipeline.score(X_test, y_test)
+
+Centering and scaling:
+features on larger scales can disproportionally influence the model, we want features to be on a similar scale, normalizing or standardizing (scaling and centering)
+
+How to scale our data? -> subtract the mean and divide by variance, all features are centered around 0 and have a variance of 1 (standardization)
+We can also subtract the minimum and divide by the range -> minimum 0 and maximum 1
+
+from sklearn.preprocessing import StandardScaler
+X = music_df.drop("genre", axis=1).values
+y = music_df["genre"].values
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+Scaling in a pipeline:
+steps = [('scaler', StandardScaler()), ('knn', KNeighborsClassifier(n_neighbors=6))]
+pipeline = Pipeline(steps)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+knn_scaled = pipeline.fit(X_train, y_train)
+y_pred = knn_scaled.predict(X_test)
+print(knn_scaled.score(X_test, y_test))
+
+
+from sklearn.model_selection import GridSearchCV
+steps = [('scaler', StandardScaler()), ('knn', KNeighborsClassifier())]
+pipeline = Pipeline(steps)
+parameters = {"knn__n_neighbors": np.arange(1, 50)}
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=21)
+cv = GridSearchCV(pipeline, param_grid=parameters)
+cv.fit(X_train, y_train)
+y_pred = cv.predict(X_test)
+print(cv.best_score_)
+print(cv.best_params_)
+
+Different models for different problems -> depends on size of the dataset
+fewer features = simpler model, faster training time
+Some models require larger amounts of data to perform well
+Some models are easier to explain, which can be important for stakeholders, linear regression has high interpretability as we can understand the coefficients.
+
+Flexibility may improve accuracy by making fewer assumptions about data, e.g. kNN is a more flexible model, doesn't assume any linear relationships
+
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import cross_val_score, KFold, train_test_split
+from sklearn.preprocessing import StandardScaler
+
+X = music.drop("genre", axis=1).values
+y = music["genre"].values
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42)
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+
+
+
+
+

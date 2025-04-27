@@ -1,0 +1,306 @@
+navigate and parse html code, build tools to crawl websites automatically
+scrapy library, also BeautifulSoup and Selenium can be used
+
+Computational web scraping -> create software to automate data extraction from online sources, 
+- comparing prices
+- satisfaction of customers
+- generating potential leads, and much more.
+
+Web scraping pipeline:
+setup (define objective -> identify sources) -> acquisition (access raw data -> parse and extract) -> processing (analyze <-> explore <-> learn <-> wrangle)
+- in setup, understand what we want to do, find sources to help us do it
+- in acquisition, read in the raw data from online, format these data to be usable (parsing information and extracting these data into meaningful and useful data structures)
+- in processing, many options
+
+scrapy is web crawling library, can easily scale large scraping projects
+
+HTML read by web browsers to render and display website content
+<html>
+<body>
+<div>
+<p><Hello world!</p>
+.....
+
+The spacing we use in the portion of the string we provide (e.g., indenting <head> two spaces more than <html>) isn't necessary, but we did so just to make it easier to read.
+
+information within HTML tags can be valuable, extract link URLs, easier way to select elements
+
+<div id="unique-id" class="some class">
+	..div element contents..
+</div>
+
+id attribute should be unique
+class attribute doesn't need to be unique
+
+a tags are for hyperlinks, href attribute tells what link to go
+
+XPath -> single forward-slash / used to move forward one generation, tag names between slashes give direction to which elements, brackets [] after a tag name tell us which of the selected siblings to choose
+xpath = '/html/body/div[2]'
+
+direct to all table elements within the entire HTML code: double slash (look forward all future generations instead of just 1 generation like the single forward-slash)
+xpath = '//table'  -> direct to all table elements within the entire HTML code
+xpath = '/html/body/div[2]//table'  -> direct to all table elements which are descendants of the 2nd div child of the body element
+
+Navigating HTML computatioally, most libraries are able to read and interpret XPath strings
+
+select all span elements whose class attribute equals "span-class" -> xpath = '//span[@class="span-class"]'
+
+XPath single forward slash / looks forward one generation, double forward slash // looks forward all future generations, square brackets [] help narrow in on specific elements
+
+'/html/body' and '/html[1]/body[1]' give the same selection
+
+* (the asterisks) wildcard character
+xpath = '/html/body/*'
+
+The number of elements selected with the XPath string xpath = "/html/body/* is equal to the number of children of the body element; whereas the number of elements selected with the XPath string xpath = "/html/body//*" is equal to the total number of descendants of the body element.
+Since "/html/body/*" selects all elements one generation below the body element without concern of the tag type, it selects all children of the body element. On the other hand, "/html/body//*" selects all elements from all future generations of the body element (that is, all descendants of the body) regardless of tag type.
+
+The number of elements selected by the XPath string xpath = "/*" is equal to the number of root elements within the HTML document, which is typically the 1 html root element.
+
+The number of elements selected by the Xpath string xpath = "//*" is equal to the total number of elements in the entire HTML document.
+
+@ represents attribute, @class, @id, @href
+
+xpath = '//div[@id="uid"]/p[2]'
+
+Content with contains:
+contains(@attri-name, "string-expr")
+
+xpath = '//*[contains(@class, "class-1")]'
+
+xpath = '/html/body/div/p[2]/@class' -> get class name
+
+Setting up a scrapy Selector:
+from scrapy import Selector
+html = '''
+<html>
+  <body>
+    <div class="hello datacamp">
+      <p>Hello world!</p>
+    </div>
+    <p>Enjoy DataCamp!</p>
+  </body>
+</html>
+'''
+
+sel = Selector(text = html) -> created a scrapy Selector object using a string with html code
+
+We can use .xpath() method within a Selector to create new Selector of specific pieces of html code
+sel.xpath("//p")
+# outputs the SelectorList:
+[<Selector xpath='//p' data='<p>Hello World!</p>,
+<Selector xpath='//p' data='<p>Enjoy DataCamp!</p>']
+
+Extracting data from a SelectorList (.extract() method):
+sel.xpath("//p")
+sel.xpath("//p").extract()
+sel.xpath("//p").extract_first()
+
+HTML text to Selector:
+from scrapy import Selector
+import requests
+url = "https://....."
+html = requests.get(url).content
+sel = Selector(text = html)
+
+From XPath to CSS:
+
+Rosetta CSStone:
+XPath: /html/body/div
+CSS Locator: html > body > div
+
+xpath = '/html/body//div/p[2]'
+css = 'html > body div > p:nth-of-type(2)'
+
+Select paragraph elements within class class1:
+css_locator = 'div#uid > p.class1'
+
+Select all elements whose class attribute belongs to class1:
+css_locator = '.class1'  -> select all elements with class1, even if they have another class
+xpath = '//*[@class="class1"]'  -> select elements only have class="class1", elements that have class="class1 class2" are not included
+xpath = '//*[contains(@class, "class1")]' -> select all elements with class1
+
+sel.css("div > p")
+sel.css("div > p").extract()
+
+
+Select the hyperlink (a element), from children of all div elements belonging to the class "course-block" (that is, any div element with a class attribute such that "course-block" is one of the classes assigned):
+css_locator = 'div .course-block > a'
+
+CSS attributes and text selection:
+XPath: <xpath-to-element>/@attr-name
+Using CSS locator: <css-to-element>::attr(attr-name)
+
+xpath = '//div[@id="uid"]/a/@href'
+css_locator = 'div#uid > a::attr(href)'
+
+::attr(....) -> selects the desired attribute
+
+sel.xpath('//p[@id="p-example"]/text()').extract() -> select all chunks of text that are within that element but not within future generations
+
+sel.xpath('//p[@id="p-example"]//text()').extract -> with double forward slash, we point to all chunks of text that are within that element and within its descendants
+
+sel.css('p#p-example::text').extract()  -> select only the text within the element but not future generations
+sel.css('p#p-example ::text').extract()  -> adding a space before the double column selects text within the element and text within its future generations
+
+In both XPath and CSS Locator notation, the extracted text is broken up by elements. The text is broken into the chunk before the hyperlink child, the text of the hyperlink child, and the text following the hyperlink child.
+
+Selector vs Response:
+Response has all the tools of Selectors: xpath and css methods followed by extract and extract_first methods.
+Response also keeps track of the url where the HTML code was loaded from.
+
+response.xpath() method works like a Selector:
+response.xpath('//div/span[@class="bio"]')
+
+response.css() method works like a Selector:
+response.css('div > span.bio')  -> the result is a Selector object
+
+Chaining works like a Selector:
+response.xpath('//div').css('span.bio')
+
+Data extraction works like a Selector:
+response.xpath('//div').css('span.bio').extract()
+
+response keeps track of the URL within the response url variable:
+response.url
+
+response lets us follow a new link with the follow() method:
+response.follow(next_url)
+
+course_divs = response.css('div.course-block')
+print(len(course_divs))
+first_div = course_divs[0]
+children = first_div.xpath('./*')
+print(len(children))
+first_child = children[0]
+print(first_child.extract())   -> <a class=... />
+second_child = children[1]
+print(second_child.extract())  -> <div class=... />
+third_child = children[2]
+print(third_child.extract())   -> <span class=... />
+
+links = response.css('div.course-block > a::attr(href)').extract()
+# step 1: course blocks
+course_divs = response.css('div.course-block')
+# step 2: hyperlink elements
+hrefs = course_divs.xpath('./a/@href')
+# step 3: extract the links
+links = hrefs.extract()
+
+the XPath string './*' -> to direct to the children of the currently selected element
+
+import scrapy
+from scrapy.crawler import CrawlerProcess
+
+class SpiderClassName(scrapy.Spider):  -> this code will tell scrapy what websites to scrape and how to scrape them
+	name = "spider_name"
+	......
+# initiate a CrawlerProcess
+process = CrawlerProcess()
+# tell the process which spider to use
+process.crawl(SpiderClassName)
+# start the crawling process
+process.start()
+
+Weaving the web (this is the class which basically tells us what sites we want to scrape and how we want to scrape them):
+class DCspider(scrapy.Spider):
+	name = 'dc_spider'
+	def start_requests(self):  # to define which site or sites we want to scrape, tells us where to send information from these sites to be parsed
+		urls = ['https://www.datacamp.com/courses/all']
+		for url in urls:
+			yield scrapy.Request(url=url, callback=self.parse)
+
+	def parse(self, response):  # to take HTML code and write it to a file
+		# simple example: write out the html
+		html_file = 'DC_courses.html'
+		with open(html_file, 'wb') as fout:
+			fout.write(response.body)
+
+def start_requests(self):
+	urls = ['https://www.datacamp.com/courses/all']
+	for url in urls:
+		yield scrapy.Request(url=url, callback=self.parse)  -> it returns values when start_requests is run
+
+
+def parse(self, response):  # to take HTML code and write it to a file, response is from scrapy.Request in start_requests method
+	# simple example: write out the html
+	html_file = 'DC_courses.html'
+	with open(html_file, 'wb') as fout:
+		fout.write(response.body)
+
+def parse(self, response):
+	links = response.css('div.course-block > a::attr(href)').extract()
+	filepath = 'DC_links.csv'
+	with open(filepath, 'w') as f:
+		f.writelines([link + '/n' for link in links])
+
+def parse(self, response):
+	links = response.css('div.course-block > a::attr(href)').extract()
+	for link in links:
+		yield response.follow(url=link, callback=self.parse2)
+def parse2(self, response):
+	# parse course sites here!
+
+Final structure of spider:
+import scrapy
+from scrapy.crawler import CrawlerProcess
+
+class DC_Chapter_Spider(scrapy.Spider):
+	name = "dc_chapter_spider"
+	
+	def start_requests(self):
+		url = 'https://www.datacamp.com/courses/all'
+		yield scrapy.Request(url=url, callback=self.parse_front)
+	
+	def parse_front(self, response):
+		# code to parse the front courses page
+	
+	def parse_pages(self, response):
+		# code to parse course pages
+		# fill in dc_dict here
+
+dc_dict = dict()
+
+process = CrawlerProcess()
+process.crawl(DC_Chapter_Spider)
+process.start()
+
+Parsing the front page
+def parse_front(self, response):
+	# narrow in on the course blocks
+	course_blocks = response.css('div.course-block')
+	# direct to the course links
+	course_links = course_blocks.xpath('./a/@href')
+	# extract the links (as a list of strings)
+	links_to_follow = course_links.extract()
+	# follow the links to the next parser
+	for url in links_to_follow:
+		yield response.follow(url=url, callback=self.parse_pages)
+
+Parsing the Course pages:
+def parse_pages(self, response):
+	# direct to the course title text
+	crs_title = response.xpath('//h1[contains(@class, "title")]/text()')
+	# extract and clean the course title text
+	crs_title_ext = crs_title.extract_first().strip()
+	# direct to the chapter titles text
+	ch_titles = response.css('h4.chapter__title::text')
+	# extract and clean the chapter titles text
+	ch_titles_ext = [t.strip() for t in ch_titles.extract()]
+	# store this in our dictionary
+	dc_dict[crs_title_ext] = ch_titles_ext
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

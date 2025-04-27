@@ -1,31 +1,13 @@
-'''
-Instructions
-- Import LogisticRegression from sklearn.linear_model and GridSearchCV from sklearn.model_selection.
-- Setup the hyperparameter grid by using c_space as the grid of values to tune C over.
-- Instantiate a logistic regression classifier called logreg.
-- Use GridSearchCV with 5-fold cross-validation to tune C:
-    - Inside GridSearchCV(), specify the classifier, parameter grid, and number of folds to use.
-    - Use the .fit() method on the GridSearchCV object to fit it to the data X and y.
-- Print the best parameter and best score obtained from GridSearchCV by accessing the best_params_ and best_score_ attributes of logreg_cv.
-'''
-
-# Import necessary modules
-from sklearn.linear_model import LogisticRegression
+# Import GridSearchCV
 from sklearn.model_selection import GridSearchCV
 
-# Setup the hyperparameter grid
-c_space = np.logspace(-5, 8, 15)
-param_grid = {'C': c_space}
+# Set up the parameter grid
+param_grid = {"alpha": np.linspace(0.00001, 1, 20)}
 
-# Instantiate a logistic regression classifier: logreg
-logreg = LogisticRegression()
+# Instantiate lasso_cv
+lasso_cv = GridSearchCV(lasso, param_grid=param_grid, cv=kf)
 
-# Instantiate the GridSearchCV object: logreg_cv
-logreg_cv = GridSearchCV(logreg, param_grid, cv=5)
-
-# Fit it to the data
-logreg_cv.fit(X, y)
-
-# Print the tuned parameters and score
-print("Tuned Logistic Regression Parameters: {}".format(logreg_cv.best_params_)) 
-print("Best score is {}".format(logreg_cv.best_score_))
+# Fit to the training data
+lasso_cv.fit(X_train, y_train)
+print("Tuned lasso paramaters: {}".format(lasso_cv.best_params_))
+print("Tuned lasso score: {}".format(lasso_cv.best_score_))

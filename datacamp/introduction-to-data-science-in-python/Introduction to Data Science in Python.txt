@@ -1,0 +1,78 @@
+Writing Python code in DataCamp:
+- iPython shell = console
+- script editor
+
+Common modules: scikit-learn, matplotlib (for charts), pandas (for tabular data), scipy (for statistics), nltk (for text data)
+
+Rules for variable names -> must start with a letter (usually lowercase), after first letter can use letters/numbers/underscores, no spaces or special characters
+Variables are case sensitive.
+Variable names cannot begin with a number
+
+bayes42, b, bayes_weight -> valid variable names
+bayes-height, bayes!, 42bayes -> invalid variable names (gives SyntaxError: can't assign to operator)
+
+A function is an action
+
+DataFrame -> spreadsheet-like data (with rows and columns)
+
+tabular data -> data has rows and columns (e.g. spreadsheets, database tables)
+
+pandas -> to load tabular data from different sources, search for particular rows or columns, calculate aggregate statistics, combining data from multiple sources
+
+import pandas as pd
+df = pd.read_csv('ransom.csv')
+df.head()
+df.info()  -> number of rows, colum names (info method is particularly useful for DataFrames with many columns that are difficult to display using head method)
+
+Selecting columns:
+credit_records.price.sum()
+
+Matplotlib arbitrary text:
+plt.text(5, 9, "unusually low h frequency!")
+
+Matplotlib adding color:
+plt.plot(x, y, color='tomato')
+
+Changing line width:
+plt.plot(x, y, linewidth=1)
+
+Changing line style:
+plt.plot(x, y, linestyle='-')  # -, --, -., :
+
+adding markers:
+plt.plot(x, y, marker='x')  # x, s (square), o (circle), d (diamond), *, h
+
+setting a style:
+plt.style.use('ggplot')
+plt.style.use('fivethirtyeight')
+plt.style.use('seaborn')
+plt.style.use('default')
+
+plt.bar(df.precinct, df.pets_abducted, yerr=df.error)
+
+stacked bar charts:
+plt.bar(df.precinct, df.cat, bottom=df.dog)
+plt.bar(df.precinct, df.dog)
+
+changing bins:
+plt.hist(data, bins=nbins)
+plt.hist(gravel.mass, bins=40)
+
+changing range:
+plt.hist(data, range=(xmin, xmax))
+
+normalizing with density=True (sum of bar area=1):
+plt.hist(male_weight, density=True)
+plt.hist(female_weight, density=True)
+
+
+
+
+
+
+
+
+
+
+
+

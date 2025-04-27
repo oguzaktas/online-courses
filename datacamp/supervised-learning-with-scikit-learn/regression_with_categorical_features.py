@@ -1,20 +1,14 @@
-'''
-Instructions
-- Import Ridge from sklearn.linear_model and cross_val_score from sklearn.model_selection.
-- Instantiate a ridge regressor called ridge with alpha=0.5 and normalize=True.
-- Perform 5-fold cross-validation on X and y using the cross_val_score() function.
-- Print the cross-validated scores.
-'''
+# Create X and y
+X = music_dummies.drop("popularity", axis=1).values
+y = music_dummies["popularity"].values
 
-# Import necessary modules
-from sklearn.linear_model import Ridge
-from sklearn.model_selection import cross_val_score
+# Instantiate a ridge model
+ridge = Ridge(alpha=0.2)
 
-# Instantiate a ridge regressor: ridge
-ridge = Ridge(alpha=0.5, normalize=True)
+# Perform cross-validation
+scores = cross_val_score(ridge, X, y, cv=kf, scoring="neg_mean_squared_error")
 
-# Perform 5-fold cross-validation: ridge_cv
-ridge_cv = cross_val_score(ridge, X, y, cv=5)
-
-# Print the cross-validated scores
-print(ridge_cv)
+# Calculate RMSE
+rmse = np.sqrt(-scores)
+print("Average RMSE: {}".format(np.mean(rmse)))
+print("Standard Deviation of the target array: {}".format(np.std(y)))

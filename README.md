@@ -97,14 +97,6 @@ This repository contains my solutions and programming assignments for online cou
 - [Developing Python Packages](https://www.datacamp.com/courses/developing-python-packages) - February 2023 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/developing-python-packages)
 - [Unit Testing for Data Science in Python](https://www.datacamp.com/courses/unit-testing-for-data-science-in-python) - February 2023 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/unit-testing-for-data-science-in-python)
 - [Object-Oriented Programming in Python](https://www.datacamp.com/courses/object-oriented-programming-in-python) - March 2023 - [Files](https://github.com/oguzaktas/online-courses/tree/master/datacamp/object-oriented-programming-in-python)
-- [Transformer Models with PyTorch](https://www.datacamp.com/courses/transformer-models-with-pytorch)
-- [Reinforcement Learning from Human Feedback (RLHF)](https://www.datacamp.com/courses/reinforcement-learning-from-human-feedback-rlhf)
-- [LLMOps Concepts](https://www.datacamp.com/courses/llmops-concepts)
-- [Working with the OpenAI API](https://www.datacamp.com/courses/working-with-the-openai-api)
-- [Introduction to Embeddings with the OpenAI API](https://www.datacamp.com/courses/introduction-to-embeddings-with-the-openai-api)
-- [Retrieval Augmented Generation (RAG) with LangChain](https://www.datacamp.com/courses/retrieval-augmented-generation-rag-with-langchain)
-- [Building RAG Chatbots for Technical Documentation](https://www.datacamp.com/projects/2041)
-- [Designing Agentic Systems with LangChain](https://www.datacamp.com/courses/designing-agentic-systems-with-langchain)
 
 ### NVIDIA Deep Learning Institute
 
@@ -120,7 +112,6 @@ This repository contains my solutions and programming assignments for online cou
 - [Entrepreneurship Foundations](https://www.linkedin.com/learning/entrepreneurship-foundations-2) - October 2019
 - [SOLID Programming Principles](https://www.linkedin.com/learning/learning-s-o-l-i-d-programming-principles) - November 2019 - [Files](https://github.com/oguzaktas/online-courses/tree/master/linkedin-learning/solid-programming-principles)
 - [Developer Career Paths and Certifications](https://www.linkedin.com/learning/developer-career-paths-and-certifications) - November 2019
-- [Atlassian Agile Project Management Professional Certificate](https://www.linkedin.com/learning/paths/atlassian-agile-project-management-professional-certificate)
 
 ### Linux Academy
 
